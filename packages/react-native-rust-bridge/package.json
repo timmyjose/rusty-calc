@@ -1,0 +1,22 @@
+{
+  "name": "react-native-rust-bridge",
+  "version": "0.0.0",
+  "description": "Rust implementation of basic calculator functions",
+  "main": "src/index",
+  "scripts": {
+    "clean": "rimraf android/.cxx && rimraf android/build",
+    "setup": "cd cpp/rustbridge/ && bash install-prerequisites.sh",
+    "build": "cd cpp/rustbridge/ && bash build.sh"
+  },
+  "codegenConfig": {
+    "name": "RNRustBridgeSpec",
+    "type": "modules",
+    "jsSrcsDir": "src"
+  },
+  "author": " <> ()",
+  "license": "UNLICENSED",
+  "homepage": "#readme",
+  "dependencies": {
+    "rimraf": "^5.0.5"
+  }
+}
