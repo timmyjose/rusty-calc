@@ -8,7 +8,8 @@
     "android": "yarn setup && expo run:android",
     "ios": "cd ios && npx pod-install && cd ../ && expo run:ios",
     "web": "expo start --web",
-    "lint": "eslint **/*.tsx"
+    "lint": "eslint **/*.tsx",
+    "eas-build-post-install": "bash eas-setup.sh"
   },
   "dependencies": {
     "@types/react": "~18.2.14",

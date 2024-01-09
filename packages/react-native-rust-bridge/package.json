@@ -5,8 +5,10 @@
   "main": "src/index",
   "scripts": {
     "clean": "rimraf android/.cxx && rimraf android/build",
-    "setup": "cd cpp/rustbridge/ && bash install-prerequisites.sh",
-    "build": "cd cpp/rustbridge/ && bash build.sh"
+    "setup:android": "cd cpp/rustbridge/ && bash install-prerequisites-android.sh",
+    "setup:ios": "cd cpp/rustbridge/ && bash install-prerequisites-ios.sh",
+    "build:android": "cd cpp/rustbridge/ && bash build-android.sh",
+    "build:ios": "cd cpp/rustbridge/ && bash build-ios.sh"
   },
   "codegenConfig": {
     "name": "RNRustBridgeSpec",
