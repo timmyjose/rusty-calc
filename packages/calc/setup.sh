@@ -14,5 +14,5 @@ fi
 
 # run setup for the react-native-rust-bridge dependency
 yarn workspace react-native-rust-bridge clean 
-yarn workspace react-native-rust-bridge setup 
-yarn workspace react-native-rust-bridge build
+yarn workspace react-native-rust-bridge setup:android 
+yarn workspace react-native-rust-bridge build:android
