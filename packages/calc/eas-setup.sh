@@ -8,6 +8,20 @@ source "$HOME/.cargo/env"
 
 # Android
 if [[ "$EAS_BUILD_PLATFORM" == "android" ]]; then
+    echo "Current working directory is: $(cwd)"
+
+    # Dummy git repo for git-lfs
+    git config --global user.email "calc@calc.com"
+    git config --global user.name "calc"
+    git init
+    git commit --allow-empty -m "Empty commit for git-lfs"
+
+    # Install git lfs
+    curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+    sudo apt-get install git-lfs -y
+    git lfs install
+    git lfs pull
+
     # install Android prerequisites
     cargo install cargo-ndk --locked
 
