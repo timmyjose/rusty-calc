@@ -36,6 +36,7 @@
             "newArchEnabled": true
           },
           "ios": {
+            "deploymentTarget": "13.4",
             "newArchEnabled": true
           }
         }
@@ -45,6 +46,7 @@
       "eas": {
         "projectId": "1febffaf-30d7-4b60-bd03-c936a56e80b4"
       }
-    }
+    },
+    "owner": "timmyjose"
   }
 }
