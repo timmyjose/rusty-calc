@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "setup": "bash setup.sh",
-    "postinstall": "bash setup.sh",
+    "eas-build-pre-install": "bash setup.sh",
     "start": "expo start",
     "android": "yarn setup && expo run:android",
     "android:prod": "yarn setup && expo run:android --variant release",
@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@types/react": "~18.2.14",
-    "expo": "~49.0.15",
-    "expo-build-properties": "^0.8.3",
+    "expo": "^49.0.21",
+    "expo-build-properties": "~0.8.3",
     "expo-dev-client": "~2.4.12",
     "expo-splash-screen": "~0.20.5",
     "expo-status-bar": "~1.6.0",

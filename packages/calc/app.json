@@ -2,6 +2,7 @@
   "expo": {
     "name": "calc",
     "slug": "calc",
+    "Scheme": "RustyCalc",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -14,16 +15,20 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.timmyjose.calc"
+      "bundleIdentifier": "com.timmyjose.rustycalc",
+      "buildNumber": "5"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.timmyjose.calc"
+      "package": "com.timmyjose.rustycalc"
     },
     "web": {
       "favicon": "./assets/favicon.png"

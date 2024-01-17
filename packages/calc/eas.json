@@ -16,7 +16,12 @@
       }
     },
     "production": {
-      "channel": "production"
+      "channel": "production",
+      "autoIncrement": true,
+      "android": {
+        "ndk": "26.1.10909125",
+        "resourceClass": "medium"
+      }
     }
   },
   "submit": {

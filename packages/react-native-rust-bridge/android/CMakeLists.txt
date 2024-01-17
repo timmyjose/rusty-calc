@@ -27,7 +27,7 @@ elseif(CMAKE_ANDROID_ARCH_ABI STREQUAL armeabi-v7a)
     target_link_directories(react-native-rust-bridge PUBLIC ../cpp/target/armv7-linux-androideabi/release/)
     target_link_libraries(react-native-rust-bridge librustbridge.a)
 else()
-    message(ERROR "[Andrpid] UNKNOWN or UNSUPPORTED platform and/or abi")
+    message(ERROR "[Android] UNKNOWN or UNSUPPORTED platform and/or abi")
 endif()
 
 # Specifies a path to native header files.

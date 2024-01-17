@@ -5,6 +5,9 @@ set -euxo pipefail
 ANDROID_PREBUILD_DIR="android"
 IOS_PREBUILD_DIR="ios"
 
+# Trigger yarn install for `expo` to be available for prebuild
+yarn install
+
 # Function to check if cargo is installed
 function check_cargo() {
     command -v cargo >/dev/null 2>&1
