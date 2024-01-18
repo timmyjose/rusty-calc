@@ -20,7 +20,7 @@
       "autoIncrement": true,
       "android": {
         "ndk": "26.1.10909125",
-        "resourceClass": "medium"
+        "resourceClass": "large"
       },
       "ios": {
         "resourceClass": "large"
