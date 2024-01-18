@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'app/**'
+      - '.github/workflows/eas-build.yml'
+
 jobs:
   build:
     name: Install and build
