@@ -19,11 +19,7 @@
       "channel": "production",
       "autoIncrement": true,
       "android": {
-        "ndk": "26.1.10909125",
-        "resourceClass": "large"
-      },
-      "ios": {
-        "resourceClass": "large"
+        "ndk": "26.1.10909125"
       },
       "env": {
         "APP_ENV": "production"
