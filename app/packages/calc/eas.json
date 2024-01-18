@@ -33,9 +33,7 @@
   "submit": {
     "production": {
       "ios": {
-        "appleId": "zoltan.jose@gmail.com",
-        "ascAppId": "6476257409",
-        "appleTeamId":"N8XNN99644"
+        "ascAppId": "6476257409"
       }
     }
   }
