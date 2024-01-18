@@ -21,10 +21,22 @@
       "android": {
         "ndk": "26.1.10909125",
         "resourceClass": "medium"
+      },
+      "ios": {
+        "resourceClass": "large"
+      },
+      "env": {
+        "APP_ENV": "production"
       }
     }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "ios": {
+        "appleId": "zoltan.jose@gmail.com",
+        "ascAppId": "6476257409",
+        "appleTeamId":"N8XNN99644"
+      }
+    }
   }
 }

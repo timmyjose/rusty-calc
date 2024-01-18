@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "calc",
+    "name": "RustyCalc",
     "slug": "calc",
     "Scheme": "RustyCalc",
     "version": "1.0.0",
@@ -21,7 +21,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.timmyjose.rustycalc",
-      "buildNumber": "5"
+      "buildNumber": "6"
     },
     "android": {
       "adaptiveIcon": {

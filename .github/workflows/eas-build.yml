@@ -30,4 +30,4 @@ jobs:
           echo "expo_token length = ${#expo_token}"
       - name: Build on EAS
         working-directory: app/packages/calc
-        run: eas build --platform ios --non-interactive 
+        run: eas build --platform ios --non-interactive --auto-submit
