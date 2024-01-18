@@ -20,8 +20,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.timmyjose.rustycalc",
-      "buildNumber": "6"
+      "bundleIdentifier": "com.timmyjose.rustycalc"
     },
     "android": {
       "adaptiveIcon": {
