@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    name: Install and build
+    name: Install, Build, and Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -19,19 +19,27 @@ jobs:
           node-version: 18.x
           cache: yarn
           cache-dependency-path: '**/yarn.lock'
+
       - name: Setup Expo and EAS
         uses: expo/expo-github-action@v8
         with:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
+
       - name: Install dependencies
         working-directory: app/packages/calc
         run: yarn install
+
       - name: Testing Token
         working-directory: app/packages/calc
         run: |
           expo_token="${{ secrets.EXPO_TOKEN  }}" 
           echo "expo_token length = ${#expo_token}"
+
+      - name: e2e tests
+        working-directory: app/packages/calc
+        run: eas build --platform ios --profile test --non-interactive
+
       - name: Build on EAS
         working-directory: app/packages/calc
         run: eas build --platform ios --non-interactive --auto-submit
