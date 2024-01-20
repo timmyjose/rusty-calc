@@ -1,8 +1,8 @@
 {
   "name": "react-native-rust-bridge",
-  "version": "0.0.0",
-  "description": "Rust implementation of basic calculator functions",
-  "main": "src/index",
+  "version": "1.0.0",
+  "description": "Polybase React Native app TurboModules Rust bridge",
+  "main": "src/index.tsx",
   "scripts": {
     "clean": "rimraf android/.cxx && rimraf android/build",
     "setup": "cd cpp/rustbridge/ && bash install-prerequisites.sh",
