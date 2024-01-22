@@ -1,0 +1,48 @@
+appId: com.timmyjose.rustycalc
+---
+- launchApp:
+    clearState: true
+
+# Bypass the expo UI for choosing a development client
+- runFlow:
+    when:
+      visible:
+        text: "http.*"
+    commands:
+      - tapOn: "http.*"
+- runFlow:
+    when:
+      visible: "Continue"
+    commands:
+      - tapOn: "Continue"
+- runFlow:
+    when:
+      visible: "Toggle performance monitor"
+    commands:
+      - tapOn:
+          point: 50%,10%
+
+- assertVisible: 
+    id: "app-textinput-x"
+
+- assertVisible:
+    id: "app-textinput-y"
+
+- assertVisible:
+    id: "app-button-add"
+    enabled: true
+
+- assertVisible:
+    id: "app-button-sub"
+    enabled: true
+
+- assertVisible:
+    id: "app-button-mul"
+    enabled: true
+
+- assertVisible:
+    id: "app-button-div"
+    enabled: true
+
+- assertVisible:
+    id: "app-text-res"
