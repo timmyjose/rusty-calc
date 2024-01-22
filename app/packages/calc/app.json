@@ -40,6 +40,9 @@
             "deploymentTarget": "13.4"
           }
         }
+      ],
+      [
+        "@config-plugins/detox"
       ]
     ],
     "extra": {
