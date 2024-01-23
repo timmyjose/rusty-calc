@@ -6,7 +6,8 @@
   "build": {
     "test": {
       "android": {
-        "gradleCommand": ":app:assembleRelease :app:assembleAndroidTest -DtestBuildType=Release",
+        "ndk": "26.1.10909125",
+        "gradleCommand": ":app:assembleRelease :app:assembleAndroidTest -DtestBuildType=release",
         "withoutCredentials": true
       },
       "ios": {

@@ -12,6 +12,10 @@ Automated app testing (e2e):
 
 ## Detox
 
+
+
 ## Maestro
+
+Requires a Debug build.
 
 

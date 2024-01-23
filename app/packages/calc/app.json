@@ -42,7 +42,10 @@
         }
       ],
       [
-        "@config-plugins/detox"
+        "@config-plugins/detox",
+        {
+          "subdomains": "*"
+        }
       ]
     ],
     "extra": {
