@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-        backward-compatible-turbo-modules
     paths:
       - 'app/**'
       - '.github/workflows/eas-build.yml'
@@ -39,10 +38,8 @@ jobs:
 
       - name: e2e tests
         working-directory: app/packages/calc
-        run: |
-          eas build --platform ios --profile test --non-interactive
-          eas build --platform android --profile test --non-interactive
+        run: eas build --platform all --profile test --non-interactive
 
       - name: Build on EAS
         working-directory: app/packages/calc
-        run: eas build --platform ios --non-interactive --auto-submit
+        run: eas build --platform all --non-interactive --auto-submit
