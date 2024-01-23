@@ -58,6 +58,7 @@ const App = () => {
  return (
    <View style={styles.container}>
      <TextInput
+       testID='app-textinput-x'
        style={styles.input}
        placeholder="Enter first number"
        keyboardType='numeric'
@@ -66,6 +67,7 @@ const App = () => {
      />
 
      <TextInput
+       testID='app-textinput-y'
        style={styles.input}
        placeholder="Enter second number"
        value={y.toString()}
@@ -73,13 +75,13 @@ const App = () => {
      />
 
      <View style={styles.buttonContainer}>
-       <Button title="Add" onPress={async() => await handleAdd()} />
-       <Button title="Subtract" onPress={async() => await handleSub()} />
-       <Button title="Multiply" onPress={async() => await handleMul()} />
-       <Button title="Divide" onPress={async() => await handleDiv()} />
+       <Button testID='app-button-add' title="Add" onPress={async() => await handleAdd()} />
+       <Button testID='app-button-sub' title="Subtract" onPress={async() => await handleSub()} />
+       <Button testID='app-button-mul' title="Multiply" onPress={async() => await handleMul()} />
+       <Button testID='app-button-div' title="Divide" onPress={async() => await handleDiv()} />
      </View>
 
-     <Text style={styles.resultText}>Result: {result}</Text>
+     <Text testID='app-text-res' style={styles.resultText}>Result: {result}</Text>
    </View>
  )
 }

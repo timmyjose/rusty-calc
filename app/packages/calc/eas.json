@@ -4,6 +4,16 @@
     "appVersionSource": "remote"
   },
   "build": {
+    "test": {
+      "android": {
+        "ndk": "26.1.10909125",
+        "gradleCommand": ":app:assembleRelease :app:assembleAndroidTest -DtestBuildType=release",
+        "withoutCredentials": true
+      },
+      "ios": {
+        "simulator": true
+      }
+    },
     "development": {
       "developmentClient": true,
       "distribution": "internal"
