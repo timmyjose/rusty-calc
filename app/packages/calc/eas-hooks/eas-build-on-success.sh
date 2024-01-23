@@ -10,6 +10,7 @@ function cleanup() {
     adb emu kill &
     # Stop the adb server manually
     adb kill-server
+    disown
   fi
 }
 

@@ -42,4 +42,4 @@ jobs:
 
       - name: Build on EAS
         working-directory: app/packages/calc
-        run: eas build --platform all --non-interactive --auto-submit
+        run: eas build --platform ios --non-interactive --auto-submit
