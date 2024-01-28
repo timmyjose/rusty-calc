@@ -5,6 +5,20 @@ set -euxo pipefail
 ANDROID_PREBUILD_DIR="android"
 IOS_PREBUILD_DIR="ios"
 
+if [[ "$@" == *"--clean"* ]]
+then
+    (
+        echo "Doing a fulle clean..."
+        set +e
+        set -x
+        echo "Deleting ../../app/node_modules"
+        rm -rf ../../node_modules
+        echo "Deleting ios and android directories"
+        rm -rf ios android
+        set -e
+    )
+fi
+
 # Trigger yarn install for `expo` to be available for prebuild
 yarn install
 
