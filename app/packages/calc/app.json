@@ -46,6 +46,13 @@
         {
           "subdomains": "*"
         }
+      ],
+      [
+        "@sentry/react-native/expo",
+        {
+          "organization": "SENTRY_ORG",
+          "project": "SENTRY_PROJECT"
+        }
       ]
     ],
     "extra": {

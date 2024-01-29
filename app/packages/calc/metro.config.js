@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 // Learn more https://docs.expo.io/guides/customizing-metro
-const { getDefaultConfig } = require('expo/metro-config')
+const { getSentryExpoConfig } = require('@sentry/react-native/metro')
 
 /** @type {import('expo/metro-config').MetroConfig} */
-const config = getDefaultConfig(__dirname)
+const config = getSentryExpoConfig(__dirname)
 config.resolver.sourceExts.push('cjs')
 
 module.exports = config
