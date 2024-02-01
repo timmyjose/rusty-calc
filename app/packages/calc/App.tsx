@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { View, TextInput, Button, Text, StyleSheet, StatusBar } from 'react-native'
 import { execute } from 'react-native-rust-bridge'
+import * as Updates from 'expo-updates'
 
 const App = () => {
  const [x, setX] = useState(0)
@@ -54,9 +55,15 @@ const App = () => {
    setResult(quot.res)
  }
 
+ const runTypeMessage = Updates.isEmbeddedLaunch
+  ? 'This app is running from built-in code'
+  : 'This app is running an update'
+
 
  return (
    <View style={styles.container}>
+    <Text>{runTypeMessage}</Text>
+    <Text>Testing after changing `production` branch to `main` branch to match the iOS and Android configurations</Text>
      <TextInput
        testID='app-textinput-x'
        style={styles.input}

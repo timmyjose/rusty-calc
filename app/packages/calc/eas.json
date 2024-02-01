@@ -12,19 +12,23 @@
       },
       "ios": {
         "simulator": true
-      }
+      },
+      "channel": "test"
     },
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "channel": "development"
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "channel": "preview"
     },
     "preview-sim": {
       "ios": {
         "simulator": true
-      }
+      },
+      "channel": "preview-sim"
     },
     "production": {
       "channel": "production",
