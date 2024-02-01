@@ -63,7 +63,9 @@ const App = () => {
  return (
    <View style={styles.container}>
     <Text>{runTypeMessage}</Text>
-    <Text>Testing after changing `production` branch to `main` branch to match the iOS and Android configurations</Text>
+    <Text>Testing after changing back to `production` channel and branch</Text>
+    <Text>Adding another line before eas update</Text>
+    <Text>Adding another line after eas update for Android testing</Text>
      <TextInput
        testID='app-textinput-x'
        style={styles.input}
@@ -86,6 +88,7 @@ const App = () => {
        <Button testID='app-button-sub' title="Subtract" onPress={async() => await handleSub()} />
        <Button testID='app-button-mul' title="Multiply" onPress={async() => await handleMul()} />
        <Button testID='app-button-div' title="Divide" onPress={async() => await handleDiv()} />
+       <Button testID='app-button-dummy' title="Dummy" onPress={async() => alert('Hello, there! Thanks for clicking me!')} />
      </View>
 
      <Text testID='app-text-res' style={styles.resultText}>Result: {result}</Text>
