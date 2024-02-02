@@ -79,6 +79,7 @@ const App = () => {
     <Text>Adding another line before eas update</Text>
     <Text>Adding another line after eas update for Android testing</Text>
     <Text>Testing Native code changes</Text>
+    <Text>This is new text added after the new build (post Native code changes)</Text>
      <TextInput
        testID='app-textinput-x'
        style={styles.input}
@@ -102,6 +103,7 @@ const App = () => {
        <Button testID='app-button-mul' title="Multiply" onPress={async() => await handleMul()} />
        <Button testID='app-button-div' title="Divide" onPress={async() => await handleDiv()} />
        <Button testID='app-button-abs' title='Abs' onPress={(async() => await handleAbs())} />
+       <Button testID='app-button-dummy' title='Dummy' onPress={(async() => alert('Hello from a new build!'))}/>
      </View>
 
      <Text testID='app-text-res' style={styles.resultText}>Result: {result}</Text>
