@@ -3,3 +3,5 @@ node_modules
 **/*.tar.gz
 app/package-lock.json
 notes.md
+app/.expo
+app/tsconfig.json

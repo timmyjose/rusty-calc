@@ -19,6 +19,7 @@ pub enum Command {
     Sub { x: f64, y: f64 },
     Mul { x: f64, y: f64 },
     Div { x: f64, y: f64 },
+    Abs { x: f64 }
 }
 
 #[derive(Serialize)]
@@ -70,12 +71,22 @@ async fn execute_cmd(cmd: Command) -> CommandResult {
                 operation: "multiplication".to_string(),
             }
         }
+
         Command::Div { x, y } => {
             let quot = calc::div(x, y).await;
             CommandResult {
                 res: quot,
                 operation: "division".to_string(),
             }
+        },
+
+        Command::Abs { x } => {
+            let abs_res = calc::abs(x).await;
+            CommandResult {
+                res: abs_res,
+                operation: "abs".to_string(),
+            }
+
         }
     }
 }
