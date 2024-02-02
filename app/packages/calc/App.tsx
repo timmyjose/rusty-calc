@@ -74,7 +74,7 @@ const App = () => {
 
  return (
    <View style={styles.container}>
-    <Text>After eas channel:edit production --branch mobile-release-expo-update, and update to CI workflow</Text>
+    <Text>Added text to a different branch (not release branch)</Text>
     <Text>{runTypeMessage}</Text>
      <TextInput
        testID='app-textinput-x'
