@@ -1,15 +1,15 @@
 {
   "name": "rusty-calc",
   "Scheme": "RustyCalc",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "index.js",
   "scripts": {
     "setup": "bash setup.sh",
     "eas-build-pre-install": "bash ./eas-hooks/eas-build-pre-install.sh && bash setup.sh",
     "eas-build-on-success": "bash ./eas-hooks/eas-build-on-success.sh",
     "start": "expo start",
-    "android": "yarn setup && expo run:android",
-    "android:prod": "yarn setup && expo run:android --variant release",
+    "android": "expo run:android",
+    "android:prod": "expo run:android --variant release",
     "ios": "cd ios && npx pod-install && cd ../ && expo run:ios",
     "ios:prod": "cd ios && npx pod-install && cd ../ && expo run:ios --configuration Release",
     "web": "expo start --web",
@@ -22,6 +22,7 @@
     "expo-dev-client": "~2.4.12",
     "expo-splash-screen": "~0.20.5",
     "expo-status-bar": "~1.6.0",
+    "expo-updates": "~0.18.19",
     "react": "18.2.0",
     "react-native": "0.72.6",
     "react-native-rust-bridge": "*"
