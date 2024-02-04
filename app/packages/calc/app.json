@@ -3,7 +3,7 @@
     "name": "RustyCalc",
     "slug": "calc",
     "Scheme": "RustyCalc",
-    "version": "1.1.0",
+    "version": "3.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -28,7 +28,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.timmyjose.rustycalc"
+      "package": "com.timmyjose.rustycalc",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": "./assets/favicon.png"
