@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "618271481971",
+    "project_id": "rustycalc-7670c",
+    "storage_bucket": "rustycalc-7670c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:618271481971:android:0ecd789815868734a3ca06",
+        "android_client_info": {
+          "package_name": "com.timmyjose.rustycalc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYrv_lRRKMWlzOt50C8wN60K5gJFTZEFQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,8 +2,7 @@
   "expo": {
     "name": "RustyCalc",
     "slug": "calc",
-    "Scheme": "RustyCalc",
-    "version": "1.1.0",
+    "version": "3.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -21,14 +20,16 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.timmyjose.rustycalc"
+      "bundleIdentifier": "com.timmyjose.rustycalc",
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.timmyjose.rustycalc"
+      "package": "com.timmyjose.rustycalc",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -38,6 +39,7 @@
         "expo-build-properties",
         {
           "ios": {
+            "useFrameworks": "static",
             "deploymentTarget": "13.4"
           }
         }
@@ -47,7 +49,8 @@
         {
           "subdomains": "*"
         }
-      ]
+      ],
+      "@react-native-firebase/app"
     ],
     "extra": {
       "eas": {

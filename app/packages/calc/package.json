@@ -1,7 +1,7 @@
 {
   "name": "rusty-calc",
   "Scheme": "RustyCalc",
-  "version": "1.1.0",
+  "version": "3.0.0",
   "main": "index.js",
   "scripts": {
     "setup": "bash setup.sh",
@@ -16,6 +16,8 @@
     "lint": "eslint **/*.tsx"
   },
   "dependencies": {
+    "@react-native-firebase/app": "^18.8.0",
+    "@react-native-firebase/messaging": "^18.8.0",
     "@types/react": "~18.2.14",
     "expo": "^49.0.21",
     "expo-build-properties": "~0.8.3",

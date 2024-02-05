@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
-import React, { useState } from 'react'
-import { View, TextInput, Button, Text, StyleSheet, StatusBar } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { Alert, View, TextInput, Button, Text, StyleSheet, StatusBar } from 'react-native'
 import { execute } from 'react-native-rust-bridge'
 import * as Updates from 'expo-updates'
+import messaging from '@react-native-firebase/messaging'
 
 const App = () => {
  const [x, setX] = useState(0)
@@ -71,6 +72,52 @@ const App = () => {
   ? 'This app is running from built-in code'
   : 'This app is running another update'
 
+  // push notifications
+  const requestUserPermission = async () => {
+    const authStatus = await messaging().requestPermission();
+    const enabled =
+      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+  
+    if (enabled) {
+      console.log('Authorization status:', authStatus);
+    }
+  }
+
+  useEffect(() => {
+    if (requestUserPermission()) {
+      // return FCM token key
+      messaging().getToken().then(token => {
+        console.log(token)
+      })
+    } else {
+      console.log('Failed token status', authStatus)
+    }
+
+    // check whether an initial notification is available
+    messaging().getInitialNotification()
+    .then(async (remoteMessage) => {
+      if (remoteMessage) {
+        console.log('Notification caused app to open from quit state:', remoteMessage?.notification)
+      }
+    })
+
+    // when the application is running in the background
+    messaging().onNotificationOpenedApp(async (remoteMessage) => {
+      console.log('Notification caused app to open from background state:', remoteMessage.notification)
+    })
+
+    // register background handler
+    messaging().setBackgroundMessageHandler(async remoteMessage => {
+      console.log('Message handled in the background', remoteMessage)
+    })
+
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      Alert.alert('A new FCM message has arrived!', JSON.stringify(remoteMessage))
+    })
+
+    return unsubscribe
+  }, [])
 
  return (
    <View style={styles.container}>
