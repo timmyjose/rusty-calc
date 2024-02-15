@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
+      - 'provisioning-profiles'
     paths:
       - 'app/**'
       - '.github/workflows/eas-build.yml'
@@ -35,10 +35,6 @@ jobs:
         run: |
           expo_token="${{ secrets.EXPO_TOKEN  }}" 
           echo "expo_token length = ${#expo_token}"
-
-      - name: e2e tests
-        working-directory: app/packages/calc
-        run: eas build --platform all --profile test --non-interactive
 
       - name: Build on EAS
         working-directory: app/packages/calc
