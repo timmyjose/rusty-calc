@@ -38,4 +38,4 @@ jobs:
 
       - name: Build on EAS
         working-directory: app/packages/calc
-        run: eas build --platform ios --non-interactive --auto-submit
+        run: EXPO_NO_CAPABILITY_SYNC=1 eas build --platform ios --non-interactive --auto-submit
