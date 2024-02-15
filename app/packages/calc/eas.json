@@ -36,6 +36,9 @@
       "android": {
         "ndk": "26.1.10909125"
       },
+      "ios": {
+        "image": "latest"
+      },
       "env": {
         "APP_ENV": "production"
       }
