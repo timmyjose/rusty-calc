@@ -43,6 +43,10 @@ then
     echo "Missing android and/or iOS directories, running expo prebuild..."
     npx expo prebuild
 
+    # print the contents of the iOS entititlements file
+    echo "iOS entitlements file is..."
+    cat ios/RustyCalc/RustyCalc.entitlements
+
     # update the generated `android/app/build.gradle` to only build for 64-bit platforms/archs
     APP_GRADLE_FILE="android/app/build.gradle"
     echo "Updating ${APP_GRADLE_FILE} to only build for 64-bit archs"
