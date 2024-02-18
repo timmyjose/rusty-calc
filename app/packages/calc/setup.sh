@@ -69,6 +69,10 @@ then
     fi
 fi
 
+# run build for expo-native-configuration
+#yarn workspace expo-native-configuration clean
+#yarn workspace expo-native-configuration prepare
+
 # run setup for the react-native-rust-bridge dependency
 yarn workspace react-native-rust-bridge clean
 yarn workspace react-native-rust-bridge setup

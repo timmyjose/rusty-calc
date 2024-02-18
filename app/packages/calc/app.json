@@ -2,7 +2,6 @@
   "expo": {
     "name": "RustyCalc",
     "slug": "calc",
-    "Scheme": "RustyCalc",
     "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -46,6 +45,11 @@
         "@config-plugins/detox",
         {
           "subdomains": "*"
+        }
+      ],
+      ["timmyjose-expo-native-configuration",
+        {
+          "apiKey": "hello-from-npm"
         }
       ]
     ],
