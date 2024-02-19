@@ -1,11 +1,11 @@
-# expo-native-configuration
+# android-kv-backup-agent
 
-My new module
+Key-Value backup for Android
 
 # API documentation
 
-- [Documentation for the main branch](https://github.com/expo/expo/blob/main/docs/pages/versions/unversioned/sdk/native-configuration.md)
-- [Documentation for the latest stable release](https://docs.expo.dev/versions/latest/sdk/native-configuration/)
+- [Documentation for the main branch](https://github.com/expo/expo/blob/main/docs/pages/versions/unversioned/sdk/android-kv-backup-agent.md)
+- [Documentation for the latest stable release](https://docs.expo.dev/versions/latest/sdk/android-kv-backup-agent/)
 
 # Installation in managed Expo projects
 
@@ -18,7 +18,7 @@ For bare React Native projects, you must ensure that you have [installed and con
 ### Add the package to your npm dependencies
 
 ```
-npm install expo-native-configuration
+npm install android-kv-backup-agent
 ```
 
 ### Configure for iOS

@@ -24,8 +24,8 @@ yarn install
 
 # prepare the config plugin
 echo "Preparing the Android Backup Agent plugin"
-yarn workspace timmyjose-expo-native-configuration clean
-yarn workspace timmyjose-expo-native-configuration prepare
+yarn workspace android-kv-backup-agent clean
+yarn workspace android-kv-backup-agent prepare
 
 # Function to check if cargo is installed
 function check_cargo() {

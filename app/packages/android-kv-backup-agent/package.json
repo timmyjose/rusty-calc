@@ -1,7 +1,7 @@
 {
-  "name": "timmyjose-expo-native-configuration",
+  "name": "android-kv-backup-agent",
   "version": "0.1.0",
-  "description": "My new module",
+  "description": "Key-Value backup for Android",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
@@ -18,21 +18,21 @@
   "keywords": [
     "react-native",
     "expo",
-    "expo-native-configuration",
-    "ExpoNativeConfiguration"
+    "android-kv-backup-agent",
+    "AndroidKVBackupAgent"
   ],
-  "repository": "https://github.com/timmyjose/expo-native-configuration",
+  "repository": "https://github.com/timmyjose/android-kv-backup-agent",
   "bugs": {
-    "url": "https://github.com/timmyjose/expo-native-configuration/issues"
+    "url": "https://github.com/timmyjose/android-kv-backup-agent/issues"
   },
   "author": "Timmy Jose <zoltan.jose@gmail.com> (https://github.com/timmyjose)",
   "license": "MIT",
-  "homepage": "https://github.com/timmyjose/expo-native-configuration#readme",
+  "homepage": "https://github.com/timmyjose/android-kv-backup-agent#readme",
   "dependencies": {},
   "devDependencies": {
     "@types/react": "^18.0.25",
     "expo-module-scripts": "^3.4.0",
-    "expo-modules-core": "^1.11.9"
+    "expo-modules-core": "^1.11.2"
   },
   "peerDependencies": {
     "expo": "*",
