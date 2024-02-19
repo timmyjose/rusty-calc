@@ -22,6 +22,11 @@ fi
 # Trigger yarn install for `expo` to be available for prebuild
 yarn install
 
+# prepare the config plugin
+echo "Preparing the Android Backup Agent plugin"
+yarn workspace timmyjose-expo-native-configuration clean
+yarn workspace timmyjose-expo-native-configuration prepare
+
 # Function to check if cargo is installed
 function check_cargo() {
     command -v cargo >/dev/null 2>&1

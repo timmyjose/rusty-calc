@@ -47,9 +47,9 @@
           "subdomains": "*"
         }
       ],
-      ["timmyjose-expo-native-configuration",
+      ["../timmyjose-native-configuration/app.plugin.js",
         {
-          "apiKey": "hello-from-npm"
+          "apiKey": "this-monorepo-structure-works-as-well"
         }
       ]
     ],

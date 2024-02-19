@@ -7,7 +7,7 @@ export default function ApiKey() {
 
   return (
     <View style={{flex: 1, alignItems:'center', justifyContent: 'center'}}>
-      <Text>Api Key: {ExpoNativeConfiguration.default()}</Text>
+      <Text>Api Key: {ExpoNativeConfiguration.getApiKey()}</Text>
       <Button title='Go Back' onPress={() => navigation.goBack()}/>
     </View>
   )
