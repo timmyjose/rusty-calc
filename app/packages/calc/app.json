@@ -50,7 +50,8 @@
       ["./plugins/withAndroidApplicationAttributes.js",
         {
           "android:backupAgent": "expo.modules.androidkvbackupagent.RustyCalcBackupAgent",
-          "android:allowBackup": "true"
+          "android:allowBackup": "true",
+          "android:restoreAnyVersion": "true"
         }
       ]
     ],
