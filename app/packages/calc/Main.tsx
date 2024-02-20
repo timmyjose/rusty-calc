@@ -71,7 +71,7 @@ const Main = () => {
 
  return (
    <View style={styles.container}>
-     <Button title='Api Key' onPress={() => navigation.navigate('ApiKey')}/>
+     <Button title='Backup' onPress={() => navigation.navigate('Backup')}/>
      <TextInput
        testID='app-textinput-x'
        style={styles.input}

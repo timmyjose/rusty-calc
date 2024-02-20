@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'maven-publish'
 
-group = 'expo.modules.nativeconfiguration'
+group = 'expo.modules.androidkvbackupagent'
 version = '0.1.0'
 
 buildscript {
@@ -65,7 +65,7 @@ android {
     }
   }
 
-  namespace "expo.modules.nativeconfiguration"
+  namespace "expo.modules.androidkvbackupagent"
   defaultConfig {
     minSdkVersion safeExtGet("minSdkVersion", 21)
     targetSdkVersion safeExtGet("targetSdkVersion", 34)

@@ -47,9 +47,11 @@
           "subdomains": "*"
         }
       ],
-      ["../timmyjose-native-configuration/app.plugin.js",
+      ["./plugins/withAndroidApplicationAttributes.js",
         {
-          "apiKey": "this-monorepo-structure-works-as-well"
+          "android:backupAgent": "expo.modules.androidkvbackupagent.RustyCalcBackupAgent",
+          "android:allowBackup": "true",
+          "android:restoreAnyVersion": "true"
         }
       ]
     ],
