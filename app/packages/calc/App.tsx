@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import * as React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
@@ -18,3 +19,15 @@ function App() {
 }
 
 export default App
+=======
+import { NavigationContainer } from '@react-navigation/native'
+import AppNavigator from './AppNavigator'
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <AppNavigator />
+    </NavigationContainer>
+  )
+}
+>>>>>>> rncs-support

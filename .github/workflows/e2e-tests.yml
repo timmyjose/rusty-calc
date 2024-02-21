@@ -9,7 +9,7 @@ on:
       - '.github/workflows/e2e-tests.yml'
 jobs:
   build:
-    name: Install and do e2e test
+    name: Install, Build, and do E2E Test
     runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
@@ -31,13 +31,18 @@ jobs:
         with: 
           lfs: 'true'
 
-      - name: Setup
+      - name: Setup Project
         working-directory: app/packages/calc
         run: bash -c "yarn setup"
 
       - name: Pod install for iOS
         working-directory: app/packages/calc/ios
         run: npx pod-install
+
+      - name: Install applesimutils
+        run: |
+          brew tap wix/brew
+          brew install applesimutils
 
       - name: Detox build for iOS
         working-directory: app/packages/calc

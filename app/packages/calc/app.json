@@ -20,7 +20,12 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.timmyjose.rustycalc"
+      "bundleIdentifier": "com.timmyjose.rustycalc",
+      "entitlements": {
+        "com.apple.developer.icloud-container-identifiers": ["iCloud.com.timmyjose.rustycalc"],
+        "com.apple.developer.icloud-services": ["CloudKit", "CloudDocuments"],
+        "com.apple.developer.ubiquity-kvstore-identifier": "$(TeamIdentifierPrefix)$(CFBundleIdentifier)"
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -53,7 +58,8 @@
           "android:allowBackup": "true",
           "android:restoreAnyVersion": "true"
         }
-      ]
+      ],
+      "react-native-cloud-storage"
     ],
     "extra": {
       "eas": {
