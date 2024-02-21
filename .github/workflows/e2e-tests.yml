@@ -1,0 +1,53 @@
+name: e2e tests for RustyCalc
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - '*'
+    paths:
+      - 'app/**'
+      - '.github/workflows/e2e-tests.yaml'
+jobs:
+  build:
+    name: Install and build
+    runs-on: mac-14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+          cache: yarn
+          cache-dependency-path: '**/yarn.lock'
+          lfs: 'true'
+
+      - name: Set LANG globally for subsequent steps
+        run: echo "LANG=en_US.UTF-8" >> $GITHUB_ENV
+
+      - name: Checkout 
+        uses: actions/checkout@v4
+        with: 
+          lfs: 'true'
+
+      - name: Setup
+        working-directory: app/packages/calc
+        run: bash -c "yarn setup"
+
+      - name: Pod install for iOS
+        working-directory: app/packages/calc/ios
+        run: npx pod-install
+
+      - name: Detox build for iOS
+        working-directory: app/packages/calc
+        run: bash -c "detox build -c ios.release" > /dev/null
+
+      - name: Detox e2e tests for iOS
+        working-directory: app/packages/calc
+        run: bash -c "NODE_OPTIONS='--max-old-space-size=4096' detox test -c ios.release"
+
+      - name: Detox build for Android
+        working-directory: app/packages/calc
+        run: bash -c "detox build -c android.release" > /dev/null
+
+      - name: Detox e2e tests for Android
+        working-directory: app/packages/calc
+        run: bash -c "NODE_OPTIONS='--max-old-space-size=4096' detox test -c android.release"
