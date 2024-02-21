@@ -38,7 +38,10 @@ fi
 
 # Android
 if [[ "$EAS_BUILD_PLATFORM" == "android" || -z "$EAS_BUILD_PLATFORM" ]]; then
-    export ANDROID_NDK_HOME="$ANDROID_HOME/ndk/26.1.10909125"
+    if [[ -z ${ANDROID_NDK_HOME} ]]; then
+        export ANDROID_NDK_HOME="$ANDROID_HOME/ndk/26.1.10909125"
+    fi
+    echo "ANDROID_NDK_HOME=${ANDROID_NDK_HOME}"
     
     # NOTE for CI: this requires the `cargo-ndk`tool to be already installed.
     cargo ndk --target aarch64-linux-android --platform 21 -- build --release

@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
+      - foo
     paths:
       - 'app/**'
       - '.github/workflows/eas-build.yml'
