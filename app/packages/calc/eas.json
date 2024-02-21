@@ -18,11 +18,17 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "channel": "development"
+      "channel": "development",
+      "android": {
+        "ndk": "26.1.10909125"
+      }
     },
     "preview": {
       "distribution": "internal",
-      "channel": "preview"
+      "channel": "preview",
+      "android": {
+        "ndk": "26.1.10909125"
+      }
     },
     "preview-sim": {
       "ios": {

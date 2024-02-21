@@ -20,7 +20,7 @@ module.exports = {
     'ios.release': {
       type: 'ios.app',
       build:
-        'xcodebuild -workspace ios/calc.xcworkspace -scheme RustyCalc -configuration Release -sdk iphonesimulator -arch ios-arm64-simulator ios/build',
+        'xcodebuild -workspace ios/RustyCalc.xcworkspace -scheme RustyCalc -configuration Release -sdk iphonesimulator -arch arm64 -derivedDataPath ios/build',
       binaryPath: 'ios/build/Build/Products/Release-iphonesimulator/RustyCalc.app',
     },
     'android.release': {

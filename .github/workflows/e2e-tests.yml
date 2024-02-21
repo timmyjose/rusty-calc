@@ -3,14 +3,14 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - '*'
+      - 'main'
     paths:
       - 'app/**'
-      - '.github/workflows/e2e-tests.yaml'
+      - '.github/workflows/e2e-tests.yml'
 jobs:
   build:
-    name: Install and build
-    runs-on: mac-14
+    name: Install and do e2e test
+    runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -22,6 +22,9 @@ jobs:
 
       - name: Set LANG globally for subsequent steps
         run: echo "LANG=en_US.UTF-8" >> $GITHUB_ENV
+
+      - name: Install detox cli
+        run: npm install -g detox-cli
 
       - name: Checkout 
         uses: actions/checkout@v4
@@ -43,6 +46,13 @@ jobs:
       - name: Detox e2e tests for iOS
         working-directory: app/packages/calc
         run: bash -c "NODE_OPTIONS='--max-old-space-size=4096' detox test -c ios.release"
+
+      - name: Create the required Android emulator
+        run: |
+          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --install "system-images;android-31;google_apis;arm64-v8a"
+          $ANDROID_HOME/cmdline-tools/latest/bin/avdmanager --verbose create avd --force --name "pixel_4" --device "pixel_4" --package "system-images;android-31;google_apis;arm64-v8a"
+        env:
+          ANDROID_HOME=${{ env.ANDROID_HOME }}
 
       - name: Detox build for Android
         working-directory: app/packages/calc

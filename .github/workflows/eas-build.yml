@@ -36,10 +36,6 @@ jobs:
           expo_token="${{ secrets.EXPO_TOKEN  }}" 
           echo "expo_token length = ${#expo_token}"
 
-      - name: e2e tests
-        working-directory: app/packages/calc
-        run: eas build --platform all --profile test --non-interactive
-
       - name: Build on EAS
         working-directory: app/packages/calc
         run: eas build --platform ios --non-interactive --auto-submit
