@@ -47,19 +47,27 @@
           "subdomains": "*"
         }
       ],
-      [
-        "@sentry/react-native/expo",
+      "sentry-expo"
+    ],
+   "hooks": {
+      "postPublish": [
         {
-          "organization": "SENTRY_ORG",
-          "project": "SENTRY_PROJECT"
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "SENTRY_ORG",
+            "project": "SENTRY_PROJECT"
+          }
         }
       ]
-    ],
+    },
     "extra": {
       "eas": {
         "projectId": "1febffaf-30d7-4b60-bd03-c936a56e80b4"
       }
     },
-    "owner": "timmyjose"
+    "owner": "timmyjose",
+    "updates": {
+      "url": "https://u.expo.dev/1febffaf-30d7-4b60-bd03-c936a56e80b4"
+    }
   }
 }
