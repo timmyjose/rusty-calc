@@ -13,7 +13,8 @@
     "ios": "cd ios && npx pod-install && cd ../ && expo run:ios",
     "ios:prod": "cd ios && npx pod-install && cd ../ && expo run:ios --configuration Release",
     "web": "expo start --web",
-    "lint": "eslint **/*.tsx"
+    "lint": "eslint '**/*.tsx'",
+    "lintall": "yarn workspaces -p run lint"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.10",

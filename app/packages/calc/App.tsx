@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Main from './Main'
 import AndroidKVBackupAgent from './components/AndroidKVBackupAgent'
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator()
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         <Stack.Screen name='Backup' component={AndroidKVBackupAgent} />
       </Stack.Navigator>
     </NavigationContainer>
-  );
+  )
 }
 
 export default App

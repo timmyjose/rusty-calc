@@ -31,7 +31,7 @@ jobs:
         run: yarn install
 
       - name: eslint
-        run: yarn workspaces -p run lint
+        run: yarn lintall
         working-directory: app/packages/calc
 
 
