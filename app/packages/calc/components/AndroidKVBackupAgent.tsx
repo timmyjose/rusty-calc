@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
-import { Alert, Button, Platform, Text, TextInput, View } from "react-native"
+import { Alert, Button, Platform, Text, TextInput, View } from 'react-native'
 import * as AndroidKVBackupAgent from 'android-kv-backup-agent'
-import { useState } from 'react';
+import { useState } from 'react'
 
 const PREFS_FILE = 'rustycalc_app_prefs'
 
@@ -21,7 +21,7 @@ export default function ApiKey() {
   }
 
   return (
-    <View style={{flex: 1, alignItems:'center', justifyContent: 'center'}}>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       { Platform.OS === 'android' && (
         <>
           <Text>android:allowBackup : {AndroidKVBackupAgent.getAllowBackup()}</Text>

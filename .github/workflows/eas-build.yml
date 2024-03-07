@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - foo
+      - 'main'
     paths:
       - 'app/**'
       - '.github/workflows/eas-build.yml'
@@ -29,6 +29,11 @@ jobs:
       - name: Install dependencies
         working-directory: app/packages/calc
         run: yarn install
+
+      - name: eslint
+        run: yarn workspaces -p run lint
+        working-directory: app/packages/calc
+
 
       - name: Testing Token
         working-directory: app/packages/calc
