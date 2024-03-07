@@ -6,7 +6,8 @@
   "scripts": {
     "clean": "rimraf android/.cxx && rimraf android/build",
     "setup": "cd cpp/rustbridge/ && bash install-prerequisites.sh",
-    "build": "cd cpp/rustbridge/ && bash build.sh"
+    "build": "cd cpp/rustbridge/ && bash build.sh",
+    "lint": "eslint src/*.{ts,tsx}"
   },
   "codegenConfig": {
     "name": "RNRustBridgeSpec",

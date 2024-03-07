@@ -20,6 +20,9 @@ jobs:
           cache: yarn
           cache-dependency-path: '**/yarn.lock'
 
+      - name: eslint
+        run: yarn workspaces -p run lint
+
       - name: Setup Expo and EAS
         uses: expo/expo-github-action@v8
         with:
