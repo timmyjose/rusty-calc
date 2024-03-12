@@ -37,6 +37,7 @@ if [[ "$EAS_BUILD_PLATFORM" == "ios" || -z "$EAS_BUILD_PLATFORM" ]]; then
 fi
 
 # Android
+ANDROID_NDK_HOME=
 if [[ "$EAS_BUILD_PLATFORM" == "android" || -z "$EAS_BUILD_PLATFORM" ]]; then
     if [[ -z ${ANDROID_NDK_HOME} ]]; then
         export ANDROID_NDK_HOME="$ANDROID_HOME/ndk/26.1.10909125"
