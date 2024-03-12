@@ -8,7 +8,10 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
-    "standard"
+    "standard",
+    "plugin:import/warnings",
+    "plugin:import/errors",
+    "plugin:import/typescript"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -49,6 +52,18 @@
     "semi": [
       "error",
       "never"
-    ]
+    ],
+    "import/no-named-as-default": "off"
+  },
+  "settings": {
+    "import/parsers": {
+        "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+        "typescript": true
+    },
+    "react": {
+        "version": "detect"
+    }
   }
 }

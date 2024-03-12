@@ -1,0 +1,37 @@
+name: App / Eslint & Tests
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - '*'
+    paths:
+      - 'app/**'
+      - '.github/workflows/eslint-and-tests.yml'
+
+jobs:
+  build:
+    name: Setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: yarn
+          cache-dependency-path: '**/yarn.lock'
+
+      - name: Install dependencies
+        working-directory: app
+        run: yarn 
+
+      - name: Prepare Android KV Backup Agent package
+        working-directory: app/packages/android-kv-backup-agent
+        run: yarn prepare
+
+      - name: eslint
+        run: yarn lint
+        working-directory: app
+
+      - name: Test 
+        run: yarn test
+        working-directory: app/packages/calc
