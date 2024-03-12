@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     name: Setup
-    runs-on: macos-14
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -20,23 +20,13 @@ jobs:
           cache: yarn
           cache-dependency-path: '**/yarn.lock'
 
-      - name: Set LANG globally for subsequent steps
-        run: echo "LANG=en_US.UTF-8" >> $GITHUB_ENV
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Install dependencies
-        working-directory: app/packages/calc
-        run: bash -c "yarn setup"
-        env:
-          ANDROID_SDK_ROOT: ${{ env.ANDROID_SDK_ROOT }}
+        working-directory: app
+        run: yarn 
+
+      - name: Prepare Android KV Backup Agent packages
+        working-directory: app/packages/android-kv-backup-agent
+        run: yarn prepare
 
       - name: eslint
         run: yarn lint
