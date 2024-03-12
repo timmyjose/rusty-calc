@@ -24,7 +24,7 @@ jobs:
         working-directory: app
         run: yarn 
 
-      - name: Prepare Android KV Backup Agent packages
+      - name: Prepare Android KV Backup Agent package
         working-directory: app/packages/android-kv-backup-agent
         run: yarn prepare
 
