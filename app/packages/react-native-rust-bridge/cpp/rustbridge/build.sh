@@ -6,7 +6,7 @@ EAS_BUILD_PLATFORM=${EAS_BUILD_PLATFORM:-""}
 
 # common cleanup (if requested)
 # ignore clean errors if they occur
-if [[ "$@" == *"--clean"* ]]
+if [[ "$@" == *"--full-clean"* ]]
 then
     (
         echo "Doing a clean build..."
@@ -37,12 +37,15 @@ if [[ "$EAS_BUILD_PLATFORM" == "ios" || -z "$EAS_BUILD_PLATFORM" ]]; then
 fi
 
 # Android
-ANDROID_NDK_HOME=
 if [[ "$EAS_BUILD_PLATFORM" == "android" || -z "$EAS_BUILD_PLATFORM" ]]; then
-    if [[ -z ${ANDROID_NDK_HOME} ]]; then
-        export ANDROID_NDK_HOME="$ANDROID_HOME/ndk/26.1.10909125"
-    fi
-    echo "ANDROID_NDK_HOME=${ANDROID_NDK_HOME}"
+    NDK_VERSION="26.1.10909125"
+    export ANDROID_NDK_HOME="$ANDROID_HOME/ndk/$NDK_VERSION"
+
+    if [ -d "$ANDROID_NDK_HOME" ]; then
+        echo "ANDROID_NDK_HOME directory exists: $ANDROID_NDK_HOME"
+    else
+        echo "ANDROID_NDK_HOME directory does not exist: $ANDROID_NDK_HOME"
+    fi    
     
     # NOTE for CI: this requires the `cargo-ndk`tool to be already installed.
     cargo ndk --target aarch64-linux-android --platform 21 -- build --release
@@ -64,5 +67,5 @@ if [[ "$EAS_BUILD_PLATFORM" == "android" || -z "$EAS_BUILD_PLATFORM" ]]; then
 fi
 
 # post-build cleanup
-#rm -rf dist ../../../../../dist target rustbridge.xcframework
+rm -rf dist ../../../../../dist target rustbridge.xcframework
 

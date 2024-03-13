@@ -5,7 +5,7 @@ set -euxo pipefail
 ANDROID_PREBUILD_DIR="android"
 IOS_PREBUILD_DIR="ios"
 
-if [[ "$@" == *"--clean"* ]]
+if [[ "$@" == *"--clean"* || "$@" == *"--full-clean"* ]]
 then
     (
         echo "Doing a clean build..."
@@ -41,7 +41,6 @@ else
     echo "Cargo is already installed."
 fi
 
-
 # run `prebuild` iff the `android` and `iOS` directories do not exist
 if [[ ! -d ${ANDROID_PREBUILD_DIR} ]] || [[ ! -d ${IOS_PREBUILD_DIR} ]]
 then
@@ -73,10 +72,6 @@ then
         exit 1
     fi
 fi
-
-# run build for expo-native-configuration
-#yarn workspace expo-native-configuration clean
-#yarn workspace expo-native-configuration prepare
 
 # run setup for the react-native-rust-bridge dependency
 yarn workspace react-native-rust-bridge clean
