@@ -44,6 +44,11 @@ jobs:
         working-directory: app/packages/calc/ios
         run: npx pod-install
 
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        env:
+          ANDROID_NDK_ROOT: ${{ env.ANDROID_NDK_ROOT }}
+
       - name: Detox build for iOS
         working-directory: app/packages/calc
         run: bash -c "detox build -c ios.release" > /dev/null
