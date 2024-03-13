@@ -31,6 +31,7 @@ const Main = () => {
     const diff = JSON.parse(await execute(subCmd))
     setResult(diff.res)
   }
+
   const handleMul = async () => {
     const mulCmd = JSON.stringify({
       Mul: {
@@ -70,7 +71,7 @@ const Main = () => {
 
   return (
     <View style={styles.container}>
-      <Button title='Backup' onPress={() => navigation.navigate('Backup')}/>
+      <Button testID='app-button-backup' title='Backup' onPress={() => navigation.navigate('Backup')}/>
       <TextInput
         testID='app-textinput-x'
         style={styles.input}

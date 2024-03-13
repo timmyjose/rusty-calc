@@ -14,7 +14,7 @@
     "ios:prod": "cd ios && npx pod-install && cd ../ && expo run:ios --configuration Release",
     "web": "expo start --web",
     "lint": "eslint '**/*.tsx'",
-    "test": "jest"
+    "test": "jest ./tests"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.10",
