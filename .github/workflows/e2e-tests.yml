@@ -1,4 +1,4 @@
-name: e2e tests for RustyCalc
+name: App / Build / e2e Tests
 on:
   workflow_dispatch:
   push:

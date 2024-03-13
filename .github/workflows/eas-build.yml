@@ -1,12 +1,12 @@
-name: EAS Build for Rusty Calc
+name: App / Build / Submit
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - 'main'
-    paths:
-      - 'app/**'
-      - '.github/workflows/eas-build.yml'
+  # push:
+  #   branches:
+  #     - 'main'
+  #   paths:
+  #     - 'app/**'
+  #     - '.github/workflows/eas-build.yml'
 
 jobs:
   build:
@@ -33,7 +33,6 @@ jobs:
       - name: eslint
         run: yarn lintall
         working-directory: app/packages/calc
-
 
       - name: Testing Token
         working-directory: app/packages/calc
