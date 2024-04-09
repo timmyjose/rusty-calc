@@ -59,7 +59,8 @@
           "android:restoreAnyVersion": "true"
         }
       ],
-      "react-native-cloud-storage"
+      "react-native-cloud-storage",
+      "./plugins/withAndroid64BitOnly"
     ],
     "extra": {
       "eas": {

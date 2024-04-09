@@ -28,7 +28,7 @@ if [[ "$EAS_BUILD_PLATFORM" == "ios" || -z "$EAS_BUILD_PLATFORM" ]]; then
     mkdir -p dist/aarch64-apple-ios-sim
     mkdir -p dist/x86_64-apple-ios
 
-    cargo pod build --ios -- --release
+    RUST_LOG=info cargo pod build --ios -- --release
 
     xcodebuild -create-xcframework \
     -library dist/aarch64-apple-ios/librustbridge.a \
