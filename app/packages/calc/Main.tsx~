@@ -74,7 +74,6 @@ const Main = () => {
       <Text>Update 1</Text>
       <Text>Update 2</Text>
       <Text>Update 3</Text>
-      <Text>Update 4</Text>
       <Button testID='app-button-backup' title='Backup' onPress={() => navigation.navigate('Backup')}/>
       <TextInput
         testID='app-textinput-x'
