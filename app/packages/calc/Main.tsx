@@ -76,6 +76,7 @@ const Main = () => {
       <Text>Update 3</Text>
       <Text>Update 4</Text>
       <Text>Update for CI Workflow</Text>
+      <Text>Update after yarn setup</Text>
       <Button testID='app-button-backup' title='Backup' onPress={() => navigation.navigate('Backup')}/>
       <TextInput
         testID='app-textinput-x'
