@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - 'app/**'
-      - '.github/workflows/eas.release.main.yml'
+      - '.github/workflows/eas.release.update.main.yml'
 jobs:
   build:
     name: Checkout and EAS Update
@@ -31,4 +31,4 @@ jobs:
 
       - name: Perform eas update
         working-directory: app/packages/calc
-        run: eas update -channel-production --message="$(git log -1 --pretty=%B)"
+        run: eas update --channel=production --message="$(git log -1 --pretty=%B)"
