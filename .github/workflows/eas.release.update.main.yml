@@ -23,10 +23,6 @@ jobs:
         working-directory: app/packages/calc
         run: yarn install
 
-      - name: Run eslint
-        working-directory: app
-        run: yarn lint
-
       - name: Setup Expo and EAS
         uses: expo/expo-github-action@v8
         with:

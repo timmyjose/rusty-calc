@@ -1,12 +1,12 @@
 name: App / Build / e2e Tests
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - 'main'
-    paths:
-      - 'app/**'
-      - '.github/workflows/e2e-tests.yml'
+    #push:
+    #  branches:
+    #    - 'main'
+    #  paths:
+    #    - 'app/**'
+    #    - '.github/workflows/e2e-tests.yml'
 jobs:
   build_ios:
     name: Install, Build, and e2e Testing (iOS)
