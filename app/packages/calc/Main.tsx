@@ -75,6 +75,7 @@ const Main = () => {
       <Text>Update 2</Text>
       <Text>Update 3</Text>
       <Text>Update 4</Text>
+      <Text>Update for CI Workflow</Text>
       <Button testID='app-button-backup' title='Backup' onPress={() => navigation.navigate('Backup')}/>
       <TextInput
         testID='app-textinput-x'
