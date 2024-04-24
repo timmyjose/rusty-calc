@@ -1,7 +1,7 @@
 {
   "name": "rusty-calc",
   "Scheme": "RustyCalc",
-  "version": "1.1.0",
+  "version": "8.0.0",
   "main": "index.js",
   "scripts": {
     "setup": "bash setup.sh",
