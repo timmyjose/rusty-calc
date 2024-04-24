@@ -25,6 +25,9 @@
         "com.apple.developer.icloud-container-identifiers": ["iCloud.com.timmyjose.rustycalc"],
         "com.apple.developer.icloud-services": ["CloudKit", "CloudDocuments"],
         "com.apple.developer.ubiquity-kvstore-identifier": "$(TeamIdentifierPrefix)$(CFBundleIdentifier)"
+      },
+      "config": {
+        "usesNonExemptEncryption": false
       }
     },
     "android": {
