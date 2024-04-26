@@ -39,6 +39,10 @@ jobs:
         working-directory: app/packages/calc
         run: yarn install
 
+      - name: Prepare android-kv-backup-agent
+        working-directory: app/packages/android-kv-backup-agent
+        run: yarn prepare
+
       - name: eslint
         run: yarn lint
         working-directory: app
