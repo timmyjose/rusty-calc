@@ -40,8 +40,8 @@ jobs:
         run: yarn install
 
       - name: eslint
-        run: yarn lintall
-        working-directory: app/packages/calc
+        run: yarn lint
+        working-directory: app
 
       - name: Testing Token
         working-directory: app/packages/calc
