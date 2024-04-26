@@ -1,6 +1,15 @@
 name: App / Build / Submit
 on:
   workflow_dispatch:
+    inputs:
+      skip_ios:
+        description: 'Skip iOS deployment'
+        default: false
+        type: boolean
+      skip_android:
+        description: 'Skip Android deployment'
+        default: false
+        type: boolean
   # push:
   #   branches:
   #     - 'main'
@@ -40,6 +49,13 @@ jobs:
           expo_token="${{ secrets.EXPO_TOKEN  }}" 
           echo "expo_token length = ${#expo_token}"
 
-      - name: Build on EAS
+      - name: Build on EAS (iOS)
+        if: ${{ github.event.inputs.skip_ios != 'true' }}
         working-directory: app/packages/calc
         run: eas build --platform ios --non-interactive --auto-submit
+
+      - name: Build on EAS (Android)
+        if: ${{ github.event.inputs.skip_android != 'true' }}
+        working-directory: app/packages/calc
+        run: eas build --platform android --non-interactive --auto-submit
+
