@@ -53,6 +53,11 @@ jobs:
           expo_token="${{ secrets.EXPO_TOKEN  }}" 
           echo "expo_token length = ${#expo_token}"
 
+      - name: Build on EAS (iOS and Android)
+        if: ${{ github.event.inputs.skip_ios != 'true' && github.event.inputs.skip_android != 'true' }}
+        working-directory: app/packages/calc
+        run: eas build --platform all --non-interactive --auto-submit
+
       - name: Build on EAS (iOS)
         if: ${{ github.event.inputs.skip_ios != 'true' }}
         working-directory: app/packages/calc
