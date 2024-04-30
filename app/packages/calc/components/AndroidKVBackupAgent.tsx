@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
 import { Alert, Button, Platform, Text, TextInput, View } from 'react-native'
 import * as AndroidKVBackupAgent from 'android-kv-backup-agent'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const PREFS_FILE = 'rustycalc_app_prefs'
 
@@ -19,6 +19,10 @@ export default function ApiKey() {
   const restoreData = (key: string): string => {
     return AndroidKVBackupAgent.restoreData(PREFS_FILE, key)
   }
+
+  useEffect(() => {
+    console.log(restoreData)
+  }, [restoreData])
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
