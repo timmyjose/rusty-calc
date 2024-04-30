@@ -59,12 +59,12 @@ jobs:
         run: eas build --platform all --non-interactive --auto-submit
 
       - name: Build on EAS (iOS)
-        if: ${{ github.event.inputs.skip_ios != 'true' }}
+        if: ${{ github.event.inputs.skip_ios != 'true' && github.event.inputs.skip_android == 'true' }}
         working-directory: app/packages/calc
         run: eas build --platform ios --non-interactive --auto-submit
 
       - name: Build on EAS (Android)
-        if: ${{ github.event.inputs.skip_android != 'true' }}
+        if: ${{ github.event.inputs.skip_android != 'true' && github.event.inputs.skip_ios == 'true' }}
         working-directory: app/packages/calc
         run: eas build --platform android --non-interactive --auto-submit
 
