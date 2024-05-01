@@ -4,9 +4,8 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'app/**'
-      - '.github/workflows/eas.release.update.main.yml'
+      - mobile-release-expo-update
+
 jobs:
   build:
     name: Checkout and EAS Update
@@ -18,6 +17,9 @@ jobs:
           node-version: 18.x
           cache: yarn
           cache-dependency-path: '**/yarn.lock'
+
+      - name: Print branch name
+        run: echo ${GITHUB_REF_NAME}
 
       - name: Install dependencies
         working-directory: app/packages/calc
@@ -31,4 +33,4 @@ jobs:
 
       - name: Perform eas update
         working-directory: app/packages/calc
-        run: eas update --channel=production --message="$(git log -1 --pretty=%B)"
+        run: echo "Hi" #eas update --channel=production --message="$(git log -1 --pretty=%B)"
