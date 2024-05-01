@@ -37,9 +37,9 @@ jobs:
       - name: Perform eas update (main)
         if:  github.ref_name == 'main'
         working-directory: app/packages/calc
-        run: echo "Running eas update for main branch" #eas update --channel=production --message="$(git log -1 --pretty=%B)"
+        run: eas update --channel=production --message="$(git log -1 --pretty=%B)"
 
       - name: Perform eas update (mobile-release-expo-update)
         if: github.ref_name  == 'mobile-release-expo-update'
         working-directory: app/packages/calc
-        run: echo "Running eas update for mobile-release-expo-update branch" #eas update --channel=production --message="$(git log -1 --pretty=%B)"
+        run: eas update --auto
