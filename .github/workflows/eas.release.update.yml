@@ -4,9 +4,8 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'app/**'
-      - '.github/workflows/eas.release.update.main.yml'
+      - mobile-release-expo-update
+
 jobs:
   build:
     name: Checkout and EAS Update
@@ -29,6 +28,16 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
-      - name: Perform eas update
+      - name: Print branch name
+        run: echo ${{ github.ref_name }}
+
+      - name: Perform eas update (main)
+        if: ${{ github.ref_name }} == 'main'
         working-directory: app/packages/calc
-        run: eas update --channel=production --message="$(git log -1 --pretty=%B)"
+        run: echo "Running eas update for main branch" #eas update --channel=production --message="$(git log -1 --pretty=%B)"
+
+      - name: Perform eas update (mobile-release-expo-update)
+        if: ${{ github.ref_name }} == 'mobile-release-expo-update'
+        working-directory: app/packages/calc
+        run: echo "Running eas update for mobile-release-expo-update branch" #eas update --channel=production --message="$(git log -1 --pretty=%B)"
+
