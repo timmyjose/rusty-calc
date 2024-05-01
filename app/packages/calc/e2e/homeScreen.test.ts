@@ -1,50 +1,47 @@
-import { expect } from 'detox'
+import { expect, device, element, by } from 'detox'
+import { beforeAll, beforeEach, describe, it, test } from '@jest/globals'
 
-describe('Home screen', () => {
-    beforeAll(async () => {
-      await device.launchApp()
+describe('Home Screen', () => {
+  beforeAll(async () => {
+    await device.launchApp({
+      newInstance: true,
+      permissions: { notifications: 'YES', userTracking: 'YES' }
     })
-  
-    beforeEach(async () => {
-      await device.reloadReactNative()
-    })
-
-    /* Visibility tests */
-
-    it('text input for x should be visible', async () => {
-        await expect(element(by.id('app-textinput-x'))).toBeVisible()
-    })
-    
-    it('text input for y should be visible', async () => {
-        await expect(element(by.id('app-textinput-y'))).toBeVisible()
-    })
-
-    it('"Add" button should be visible', async () => {
-        await expect(element(by.id('app-button-add'))).toBeVisible()
-    })
-
-    it('"Sub" button should be visible', async () => {
-        await expect(element(by.id('app-button-sub'))).toBeVisible()
-    })
-
-    it('"Mul" button should be visible', async () => {
-        await expect(element(by.id('app-button-mul'))).toBeVisible()
-    })
-
-    it('"Div" button should be visible', async () => {
-        await expect(element(by.id('app-button-div'))).toBeVisible()
-    })
-
-    it('"Result" text should be visible', async () => {
-        await expect(element(by.id('app-text-res'))).toBeVisible()
-    })
-
-    /* Action tests */
-  
-    // it('shows "Hi!" after tapping "Click me"', async () => {
-    //   await element(by.id('click-me-button')).tap()
-    //   await expect(element(by.text('Hi!'))).toBeVisible()
-    // })
   })
 
-  
+  beforeEach(async () => {
+    await device.reloadReactNative()
+  })
+
+  describe('Home Screen elements should be visible', () => {
+    it('Should show the link for "backup"', async () => {
+      const backupLink = element(by.id('app-button-backup'))
+      await expect(backupLink).toBeVisible()
+    })
+
+    it('Should show the text inputs for the two input numbers', async () => {
+      const textinputX = element(by.id('app-textinput-x'))
+      await expect(textinputX).toBeVisible()
+
+      const textinputY = element(by.id('app-textinput-y'))
+      await expect(textinputY).toBeVisible()
+    })
+
+    it('Should show the five arithmetic operations buttons', async () => {
+      const addButton = element(by.id('app-button-add'))
+      await expect(addButton).toBeVisible()
+
+      const subButton = element(by.id('app-button-sub'))
+      await expect(subButton).toBeVisible()
+
+      const mulButton = element(by.id('app-button-mul'))
+      await expect(mulButton).toBeVisible()
+
+      const divButton = element(by.id('app-button-div'))
+      await expect(divButton).toBeVisible()
+
+      const absButton = element(by.id('app-button-abs'))
+      await expect(absButton).toBeVisible()
+    })
+  })
+})

@@ -1,12 +1,21 @@
-name: EAS Build for Rusty Calc
+name: App / Build / Submit
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - foo
-    paths:
-      - 'app/**'
-      - '.github/workflows/eas-build.yml'
+    inputs:
+      skip_ios:
+        description: 'Skip iOS deployment'
+        default: false
+        type: boolean
+      skip_android:
+        description: 'Skip Android deployment'
+        default: false
+        type: boolean
+  # push:
+  #   branches:
+  #     - 'main'
+  #   paths:
+  #     - 'app/**'
+  #     - '.github/workflows/eas-build.yml'
 
 jobs:
   build:
@@ -30,12 +39,32 @@ jobs:
         working-directory: app/packages/calc
         run: yarn install
 
+      - name: Prepare android-kv-backup-agent
+        working-directory: app/packages/android-kv-backup-agent
+        run: yarn prepare
+
+      - name: eslint
+        run: yarn lint
+        working-directory: app
+
       - name: Testing Token
         working-directory: app/packages/calc
         run: |
           expo_token="${{ secrets.EXPO_TOKEN  }}" 
           echo "expo_token length = ${#expo_token}"
 
-      - name: Build on EAS
+      - name: Build on EAS (iOS and Android)
+        if: ${{ github.event.inputs.skip_ios != 'true' && github.event.inputs.skip_android != 'true' }}
+        working-directory: app/packages/calc
+        run: eas build --platform all --non-interactive --auto-submit
+
+      - name: Build on EAS (iOS)
+        if: ${{ github.event.inputs.skip_ios != 'true' && github.event.inputs.skip_android == 'true' }}
         working-directory: app/packages/calc
         run: eas build --platform ios --non-interactive --auto-submit
+
+      - name: Build on EAS (Android)
+        if: ${{ github.event.inputs.skip_android != 'true' && github.event.inputs.skip_ios == 'true' }}
+        working-directory: app/packages/calc
+        run: eas build --platform android --non-interactive --auto-submit
+

@@ -5,7 +5,7 @@ set -euxo pipefail
 ANDROID_PREBUILD_DIR="android"
 IOS_PREBUILD_DIR="ios"
 
-if [[ "$@" == *"--clean"* ]]
+if [[ "$@" == *"--clean"* || "$@" == *"--full-clean"* ]]
 then
     (
         echo "Doing a clean build..."
@@ -41,42 +41,12 @@ else
     echo "Cargo is already installed."
 fi
 
-
 # run `prebuild` iff the `android` and `iOS` directories do not exist
 if [[ ! -d ${ANDROID_PREBUILD_DIR} ]] || [[ ! -d ${IOS_PREBUILD_DIR} ]]
 then
     echo "Missing android and/or iOS directories, running expo prebuild..."
     npx expo prebuild
-
-    # update the generated `android/app/build.gradle` to only build for 64-bit platforms/archs
-    APP_GRADLE_FILE="android/app/build.gradle"
-    echo "Updating ${APP_GRADLE_FILE} to only build for 64-bit archs"
-
-    if [[ "$OSTYPE" == "darwin"* ]]
-    then
-      echo "[macOS] Updating android/app/build.gradle"
-      sed -i '' '/defaultConfig {/a \
-            ndk { \
-                abiFilters '\''x86_64'\'', '\''arm64-v8a'\'' \
-            }
-            ' "$APP_GRADLE_FILE"
-    elif [[ "$OSTYPE" == "linux-gnu"* ]]
-    then
-      echo "[Linux] Updating android/app/build.gradle"
-      sed -i '/defaultConfig {/a \
-            ndk { \
-                abiFilters '\''x86_64'\'', '\''arm64-v8a'\'' \
-            }
-            ' "$APP_GRADLE_FILE"
-    else
-        echo "Unsupported OS. Aborting..."
-        exit 1
-    fi
 fi
-
-# run build for expo-native-configuration
-#yarn workspace expo-native-configuration clean
-#yarn workspace expo-native-configuration prepare
 
 # run setup for the react-native-rust-bridge dependency
 yarn workspace react-native-rust-bridge clean

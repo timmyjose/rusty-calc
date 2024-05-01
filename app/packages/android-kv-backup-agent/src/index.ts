@@ -1,12 +1,11 @@
-import { EventEmitter, Subscription } from 'expo-modules-core'
 import AndroidKVBackupAgentModule from './AndroidKVBackupAgentModule'
 
 export function getAllowBackup(): string {
-    return AndroidKVBackupAgentModule.getAllowBackup()
+  return AndroidKVBackupAgentModule.getAllowBackup()
 }
 
 export function getBackupAgent(): string {
-    return AndroidKVBackupAgentModule.getBackupAgent()
+  return AndroidKVBackupAgentModule.getBackupAgent()
 }
 
 // set up event subscriptions so that we can backup/retrieve key-value
@@ -24,9 +23,9 @@ export function getBackupAgent(): string {
 // }
 
 export function backupData(prefsFile: string, key: string, value: string): void {
-    AndroidKVBackupAgentModule.backupData(prefsFile, key, value)
+  AndroidKVBackupAgentModule.backupData(prefsFile, key, value)
 }
 
 export function restoreData(prefsFile: string, key: string): string {
-    return AndroidKVBackupAgentModule.restoreData(prefsFile, key)
+  return AndroidKVBackupAgentModule.restoreData(prefsFile, key)
 }
