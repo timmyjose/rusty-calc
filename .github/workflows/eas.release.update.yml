@@ -25,6 +25,10 @@ jobs:
         working-directory: app/packages/calc
         run: yarn install
 
+      - name: Prepare (link) Android KV Backup Agent package
+        working-directory: app/packages/android-kv-backup-agent
+        run: yarn prepare
+
       - name: Setup Expo and EAS
         uses: expo/expo-github-action@v8
         with:
