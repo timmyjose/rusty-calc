@@ -20,6 +20,7 @@
     "@react-navigation/native": "^6.1.10",
     "@react-navigation/native-stack": "^6.9.18",
     "@types/react": "~18.2.14",
+    "android-kv-backup-agent": "*",
     "expo": "^49.0.21",
     "expo-build-properties": "~0.8.3",
     "expo-dev-client": "~2.4.13",
@@ -33,7 +34,7 @@
     "react-native-rust-bridge": "*",
     "react-native-safe-area-context": "^4.9.0",
     "react-native-screens": "^3.29.0",
-    "android-kv-backup-agent": "*"
+    "react-native-version-number": "^0.3.6"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

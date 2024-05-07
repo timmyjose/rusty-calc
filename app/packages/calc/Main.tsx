@@ -71,8 +71,9 @@ const Main = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Update from main</Text>
+      <Text>Update from rustbridge</Text>
       <Button testID='app-button-backup' title='Backup' onPress={() => navigation.navigate('Backup')}/>
+      <Button testID='app-button-version-number' title='VersionNumber' onPress={() => navigation.navigate('VersionNumberInfo')}/>
       <TextInput
         testID='app-textinput-x'
         style={styles.input}
