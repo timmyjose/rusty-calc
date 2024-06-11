@@ -44,18 +44,28 @@ jobs:
         if: github.event_name == 'workflow_dispatch'
         working-directory: app/packages/calc
         run: |
-          CURRENT_APP_JSON_VERSION=$(jq -r '.version' app.json)
+          CURRENT_APP_JSON_VERSION=$(jq -r '.expo.version' app.json)
           VERSION=${{ github.event.inputs.version }}
           UPDATE=$(jq -r '.update' ./src/app.json)
 
-          if [[ "${CURRENT_APP_JSON_VERSION}" != "${VERSION}"]]; then
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "actions@github.com"
+
+          if [[ "${CURRENT_APP_JSON_VERSION}" != "${VERSION}" ]]; then
+            echo "Detected a different app.json version..."
             jq --arg version "$VERSION" '.expo.version = $version' app.json > app.temp.json
             mv app.temp.json app.json
-            git config --local user.name "github-actions[bot]"
-            git config --local user.email "actions@github.com"
             git add app.json
             git commit -m "chore: release $VERSION ($UPDATE)"
-         fi
+          else
+            # update src/app.json's `update` field?
+            echo "Detected the same app.json version.."
+            UPDATE=$((UPDATE + 1))
+            jq --arg update "$UPDATE" '.update = $update'  src/app.json > app.temp.json
+            mv app.temp.json src/app.json
+            git add src/app.json
+            git commit -m "chore: release $VERSION ($UPDATE)"
+          fi
         
       - name: Push commit
         if: github.event_name == 'workflow_dispatch'
