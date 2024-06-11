@@ -1,6 +1,11 @@
 name: EAS / Release / Expo Update
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version number (for app.json). Eg: 1.1.7'
+        required: true
+        type: string
   push:
     branches:
       - main
@@ -34,6 +39,23 @@ jobs:
         with:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Update app.json version
+        if: github.event_name == 'workflow_dispatch'
+        working-directory: app/packages/calc
+        run: |
+          VERSION=${{ github.events.inputs.version }}
+          jq --arg version "$VERSION" '.version = $version' app.json > app.temp.json
+          mv app.temp.json app.json
+
+      - name: Commit version update
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          git config --local user.name "Github Actions"
+          git config --local user.email "actions@github.com"
+          git add app/packages/calc/app.json
+          git commit -m "chore: release ${ github.events.inputs.version} ()"
+          git push
 
       - name: Print branch name
         run: echo ${{ github.ref_name }}
