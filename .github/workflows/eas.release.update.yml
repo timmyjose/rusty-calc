@@ -44,8 +44,9 @@ jobs:
         if: github.event_name == 'workflow_dispatch'
         working-directory: app/packages/calc
         run: |
-          VERSION=${{ github.events.inputs.version }}
-          jq --arg version "$VERSION" '.version = $version' app.json > app.temp.json
+          VERSION=${{ github.event.inputs.version }}
+          UPDATE=$(jq -r '.update' ./src/app.json)
+          jq --arg version "$VERSION" '.expo.version = $version' app.json > app.temp.json
           mv app.temp.json app.json
 
       - name: Commit version update
@@ -53,8 +54,8 @@ jobs:
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "actions@github.com"
-          git commit -a -m "chore: release ${{ github.events.inputs.version }}"
-          git pull --rebase
+          git commit -a -m "chore: release $VERSION ($UPDATE)"
+          git pull --rebase origin ${{ github.ref_name }}
         
       - name: Push commit
         if: github.event_name == 'workflow_dispatch'
@@ -65,6 +66,11 @@ jobs:
 
       - name: Print branch name
         run: echo ${{ github.ref_name }}
+
+      - name: Perform eas update (workflow dispatch)
+        if: github.event.name == 'workflow_dispatch'
+        working-directory: app/packages/calc
+        run: eas update --channel=production --message="$(git log -1 --pretty=%B)"
 
       - name: Perform eas update (main)
         if:  github.ref_name == 'main'

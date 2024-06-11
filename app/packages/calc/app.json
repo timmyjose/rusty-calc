@@ -22,8 +22,13 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.timmyjose.rustycalc",
       "entitlements": {
-        "com.apple.developer.icloud-container-identifiers": ["iCloud.com.timmyjose.rustycalc"],
-        "com.apple.developer.icloud-services": ["CloudKit", "CloudDocuments"],
+        "com.apple.developer.icloud-container-identifiers": [
+          "iCloud.com.timmyjose.rustycalc"
+        ],
+        "com.apple.developer.icloud-services": [
+          "CloudKit",
+          "CloudDocuments"
+        ],
         "com.apple.developer.ubiquity-kvstore-identifier": "$(TeamIdentifierPrefix)$(CFBundleIdentifier)"
       },
       "config": {
@@ -55,7 +60,8 @@
           "subdomains": "*"
         }
       ],
-      ["./plugins/withAndroidApplicationAttributes.js",
+      [
+        "./plugins/withAndroidApplicationAttributes.js",
         {
           "android:backupAgent": "expo.modules.androidkvbackupagent.RustyCalcBackupAgent",
           "android:allowBackup": "true",
@@ -78,5 +84,6 @@
       },
       "url": "https://u.expo.dev/1febffaf-30d7-4b60-bd03-c936a56e80b4"
     }
-  }
+  },
+  "version": ""
 }
