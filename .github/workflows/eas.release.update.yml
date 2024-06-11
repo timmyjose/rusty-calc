@@ -51,11 +51,17 @@ jobs:
       - name: Commit version update
         if: github.event_name == 'workflow_dispatch'
         run: |
-          git config --local user.name "Github Actions"
+          git config --local user.name "github-actions[bot]"
           git config --local user.email "actions@github.com"
-          git add app/packages/calc/app.json
-          git commit -m "chore: release ${ github.events.inputs.version} ()"
-          git push
+          git commit -a -m "chore: release ${{ github.events.inputs.version }}"
+          git pull --rebase
+        
+      - name: Push commit
+        if: github.event_name == 'workflow_dispatch'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GH_PAT }}
+          branch: ${{ github.ref }}
 
       - name: Print branch name
         run: echo ${{ github.ref_name }}
