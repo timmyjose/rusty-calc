@@ -40,7 +40,7 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
-      - name: Update app.json version
+      - name: Update app.json version and commit
         if: github.event_name == 'workflow_dispatch'
         working-directory: app/packages/calc
         run: |
@@ -48,14 +48,10 @@ jobs:
           UPDATE=$(jq -r '.update' ./src/app.json)
           jq --arg version "$VERSION" '.expo.version = $version' app.json > app.temp.json
           mv app.temp.json app.json
-
-      - name: Commit version update
-        if: github.event_name == 'workflow_dispatch'
-        run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "actions@github.com"
-          git commit -a -m "chore: release $VERSION ($UPDATE)"
-          # git pull --rebase origin ${{ github.ref_name }}
+          git add app.json
+          git commit -m "chore: release $VERSION ($UPDATE)"
         
       - name: Push commit
         if: github.event_name == 'workflow_dispatch'
@@ -68,7 +64,7 @@ jobs:
         run: echo ${{ github.ref }}
 
       - name: Perform eas update (workflow dispatch)
-        if: github.event.name == 'workflow_dispatch'
+        if: github.event_name == 'workflow_dispatch'
         working-directory: app/packages/calc
         run: eas update --channel=production --message="$(git log -1 --pretty=%B)"
 
