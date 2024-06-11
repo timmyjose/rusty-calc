@@ -71,6 +71,7 @@ const Main = () => {
 
   return (
     <View style={styles.container}>
+      <Text>Testing updates</Text>
       <Text>Hello from Github!</Text>
       <Button testID='app-button-backup' title='Backup' onPress={() => navigation.navigate('Backup')}/>
       <Button testID='app-button-version-number' title='VersionNumber' onPress={() => navigation.navigate('VersionNumberInfo')}/>
