@@ -55,7 +55,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "actions@github.com"
           git commit -a -m "chore: release $VERSION ($UPDATE)"
-          git pull --rebase origin ${{ github.ref_name }}
+          # git pull --rebase origin ${{ github.ref_name }}
         
       - name: Push commit
         if: github.event_name == 'workflow_dispatch'
@@ -65,7 +65,7 @@ jobs:
           branch: ${{ github.ref }}
 
       - name: Print branch name
-        run: echo ${{ github.ref_name }}
+        run: echo ${{ github.ref }}
 
       - name: Perform eas update (workflow dispatch)
         if: github.event.name == 'workflow_dispatch'
