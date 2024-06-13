@@ -7,10 +7,10 @@ export default function VersionNumberInfo() {
 
   return (
     <View style={styles.container}>
-    <Text>appVersion: {VersionNumber.appVersion}</Text>
-    <Text>buildVersion: {VersionNumber.buildVersion}</Text>
-    <Text>bundleIdentifier: {VersionNumber.bundleIdentifier}</Text>
-    <Button title='Go Back' onPress={() => navigation.goBack()}/>
+      <Text>appVersion: {VersionNumber.appVersion}</Text>
+      <Text>buildVersion: {VersionNumber.buildVersion}</Text>
+      <Text>bundleIdentifier: {VersionNumber.bundleIdentifier}</Text>
+      <Button title='Go Back' onPress={() => navigation.goBack()}/>
     </View>
   )
 }
