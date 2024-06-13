@@ -47,4 +47,5 @@ jobs:
       - uses: Swatinem/rust-cache@v2
 
       - name: Run Clippy
+        working-directory: app/packages/react-native-rust-bridge/cpp/rustbridge
         run: cargo clippy --all-targets --all-features
