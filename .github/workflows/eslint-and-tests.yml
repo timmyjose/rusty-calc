@@ -38,7 +38,7 @@ jobs:
         run: yarn test
         working-directory: app/packages/calc
   clippy:
-    name: Clippy Check
+    name: App Rust Bridge Clippy Check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -48,4 +48,4 @@ jobs:
 
       - name: Run Clippy
         working-directory: app/packages/react-native-rust-bridge/cpp/rustbridge
-        run: cargo clippy --all-targets --all-features
+        run: cargo clippy --all-targets --all-features -- -D warnings

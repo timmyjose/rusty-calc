@@ -3,6 +3,7 @@ use serde::{Deserialize, Serialize};
 use std::{
     ffi::{c_char, CStr, CString},
     sync::Arc,
+    sync::Mutex
 };
 use tokio::runtime::{Builder, Runtime};
 
