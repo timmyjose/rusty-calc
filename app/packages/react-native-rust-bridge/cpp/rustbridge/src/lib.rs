@@ -2,8 +2,7 @@ use lazy_static::lazy_static;
 use serde::{Deserialize, Serialize};
 use std::{
     ffi::{c_char, CStr, CString},
-    sync::Arc,
-    sync::Mutex
+    sync::Arc
 };
 use tokio::runtime::{Builder, Runtime};
 
