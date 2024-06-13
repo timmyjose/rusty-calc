@@ -73,6 +73,7 @@ const Main = () => {
     <View style={styles.container}>
       <Button testID='app-button-backup' title='Backup' onPress={() => navigation.navigate('Backup')}/>
       <Button testID='app-button-version-number' title='VersionNumber' onPress={() => navigation.navigate('VersionNumberInfo')}/>
+      <Button title='Emulator Check' onPress={() => navigation.navigate('EmulatorCheck')} />
       <TextInput
         testID='app-textinput-x'
         style={styles.input}
