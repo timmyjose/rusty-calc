@@ -47,55 +47,20 @@ jobs:
           CURRENT_APP_JSON_VERSION=$(jq -r '.expo.version' app.json)
           VERSION=${{ github.event.inputs.version }}
 
-          if [[ "${CURRENT_APP_VERSION}" != "${VERSION}"]]; then
+          if [[ "${CURRENT_APP_JSON_VERSION}" != "${VERSION}" ]]; then
             echo "Detected a different app.json version..."
             jq --arg version "$VERSION" '.expo.version = $version' app.json > app.temp.json
             mv app.temp.json app.json
+          else
+            echo "app.json version is unchanged"
           fi
 
       - name: Print version in app.json
         if: github.event_name == 'workflow_dispatch'
         working-directory: app/packages/calc
         run: |
-          CURRENT_APP_JSON_VERSION = $(jq -r '.expo.version' app.json) 
+          CURRENT_APP_JSON_VERSION=$(jq -r '.expo.version' app.json) 
           echo "Version in app.json = ${CURRENT_APP_JSON_VERSION}"
-
-      # - name: Update app.json version and commit
-      #   if: github.event_name == 'workflow_dispatch'
-      #   working-directory: app/packages/calc
-      #   run: |
-      #     CURRENT_APP_JSON_VERSION=$(jq -r '.expo.version' app.json)
-      #     VERSION=${{ github.event.inputs.version }}
-      #     UPDATE=$(jq -r '.update' ./src/app.json)
-
-      #     git config --local user.name "github-actions[bot]"
-      #     git config --local user.email "actions@github.com"
-
-      #     if [[ "${CURRENT_APP_JSON_VERSION}" != "${VERSION}" ]]; then
-      #       echo "Detected a different app.json version..."
-      #       jq --arg version "$VERSION" '.expo.version = $version' app.json > app.temp.json
-      #       mv app.temp.json app.json
-      #       git add app.json
-      #       git commit -m "chore: release $VERSION ($UPDATE)"
-      #     else
-      #       # update src/app.json's `update` field?
-      #       echo "Detected the same app.json version.."
-      #       UPDATE=$((UPDATE + 1))
-      #       jq --arg update "$UPDATE" '.update = $update'  src/app.json > app.temp.json
-      #       mv app.temp.json src/app.json
-      #       git add src/app.json
-      #       git commit -m "chore: release $VERSION ($UPDATE)"
-      #     fi
-        
-      # - name: Push commit
-      #   if: github.event_name == 'workflow_dispatch'
-      #   uses: ad-m/github-push-action@master
-      #   with:
-      #     github_token: ${{ secrets.GH_PAT }}
-      #     branch: ${{ github.ref }}
-
-      # - name: Print branch name
-      #   run: echo ${{ github.ref }}
 
       - name: Perform eas update (workflow dispatch)
         if: github.event_name == 'workflow_dispatch'
