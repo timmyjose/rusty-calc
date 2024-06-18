@@ -4,7 +4,7 @@ on:
     inputs:
       version:
         description: 'Version number (for app.json). Eg: 1.1.7'
-        required: true
+        required: false
         type: string
   push:
     branches:
@@ -41,7 +41,7 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Update app.json if needed
-        if: github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.version
         working-directory: app/packages/calc
         run: |
           CURRENT_APP_JSON_VERSION=$(jq -r '.expo.version' app.json)
