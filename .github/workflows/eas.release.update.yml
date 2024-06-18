@@ -6,10 +6,6 @@ on:
         description: 'Version number (for app.json). Eg: 1.1.7'
         required: false
         type: string
-  push:
-    branches:
-      - main
-      - mobile-release-expo-update
 
 jobs:
   build:
@@ -41,7 +37,7 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Update app.json if needed
-        if: github.event_name == 'workflow_dispatch' && github.event.inputs.version
+        if: github.event.inputs.version
         working-directory: app/packages/calc
         run: |
           CURRENT_APP_JSON_VERSION=$(jq -r '.expo.version' app.json)
@@ -56,23 +52,11 @@ jobs:
           fi
 
       - name: Print version in app.json
-        if: github.event_name == 'workflow_dispatch'
         working-directory: app/packages/calc
         run: |
           CURRENT_APP_JSON_VERSION=$(jq -r '.expo.version' app.json) 
           echo "Version in app.json = ${CURRENT_APP_JSON_VERSION}"
 
       - name: Perform eas update (workflow dispatch)
-        if: github.event_name == 'workflow_dispatch'
         working-directory: app/packages/calc
         run: eas update --channel=production --message="$(git log -1 --pretty=%B)"
-
-      - name: Perform eas update (main)
-        if:  github.ref_name == 'main'
-        working-directory: app/packages/calc
-        run: eas update --channel=production --message="$(git log -1 --pretty=%B)"
-
-      - name: Perform eas update (mobile-release-expo-update)
-        if: github.ref_name  == 'mobile-release-expo-update'
-        working-directory: app/packages/calc
-        run: eas update --auto
