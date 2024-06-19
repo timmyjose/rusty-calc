@@ -2,7 +2,7 @@
   "expo": {
     "name": "RustyCalc",
     "slug": "calc",
-    "version": "7.0.0",
+    "version": "8.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -22,8 +22,13 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.timmyjose.rustycalc",
       "entitlements": {
-        "com.apple.developer.icloud-container-identifiers": ["iCloud.com.timmyjose.rustycalc"],
-        "com.apple.developer.icloud-services": ["CloudKit", "CloudDocuments"],
+        "com.apple.developer.icloud-container-identifiers": [
+          "iCloud.com.timmyjose.rustycalc"
+        ],
+        "com.apple.developer.icloud-services": [
+          "CloudKit",
+          "CloudDocuments"
+        ],
         "com.apple.developer.ubiquity-kvstore-identifier": "$(TeamIdentifierPrefix)$(CFBundleIdentifier)"
       },
       "config": {
@@ -55,7 +60,8 @@
           "subdomains": "*"
         }
       ],
-      ["./plugins/withAndroidApplicationAttributes.js",
+      [
+        "./plugins/withAndroidApplicationAttributes.js",
         {
           "android:backupAgent": "expo.modules.androidkvbackupagent.RustyCalcBackupAgent",
           "android:allowBackup": "true",

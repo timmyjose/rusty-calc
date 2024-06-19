@@ -4,12 +4,8 @@ on:
     inputs:
       version:
         description: 'Version number (for app.json). Eg: 1.1.7'
-        required: true
+        required: false
         type: string
-  push:
-    branches:
-      - main
-      - mobile-release-expo-update
 
 jobs:
   build:
@@ -40,32 +36,27 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
-      - name: Update app.json version
-        if: github.event_name == 'workflow_dispatch'
+      - name: Update app.json if needed
+        if: github.event.inputs.version
         working-directory: app/packages/calc
         run: |
-          VERSION=${{ github.events.inputs.version }}
-          jq --arg version "$VERSION" '.version = $version' app.json > app.temp.json
-          mv app.temp.json app.json
+          CURRENT_APP_JSON_VERSION=$(jq -r '.expo.version' app.json)
+          VERSION=${{ github.event.inputs.version }}
 
-      - name: Commit version update
-        if: github.event_name == 'workflow_dispatch'
+          if [[ "${CURRENT_APP_JSON_VERSION}" != "${VERSION}" ]]; then
+            echo "Detected a different app.json version..."
+            jq --arg version "$VERSION" '.expo.version = $version' app.json > app.temp.json
+            mv app.temp.json app.json
+          else
+            echo "app.json version is unchanged"
+          fi
+
+      - name: Print version in app.json
+        working-directory: app/packages/calc
         run: |
-          git config --local user.name "Github Actions"
-          git config --local user.email "actions@github.com"
-          git add app/packages/calc/app.json
-          git commit -m "chore: release ${ github.events.inputs.version} ()"
-          git push
+          CURRENT_APP_JSON_VERSION=$(jq -r '.expo.version' app.json) 
+          echo "Version in app.json = ${CURRENT_APP_JSON_VERSION}"
 
-      - name: Print branch name
-        run: echo ${{ github.ref_name }}
-
-      - name: Perform eas update (main)
-        if:  github.ref_name == 'main'
+      - name: Perform eas update (workflow dispatch)
         working-directory: app/packages/calc
         run: eas update --channel=production --message="$(git log -1 --pretty=%B)"
-
-      - name: Perform eas update (mobile-release-expo-update)
-        if: github.ref_name  == 'mobile-release-expo-update'
-        working-directory: app/packages/calc
-        run: eas update --auto
