@@ -6,6 +6,7 @@ use std::{
 };
 use tokio::runtime::{Builder, Runtime};
 
+/// the business logic
 mod calc;
 
 lazy_static! {
