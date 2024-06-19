@@ -2,11 +2,13 @@ use lazy_static::lazy_static;
 use serde::{Deserialize, Serialize};
 use std::{
     ffi::{c_char, CStr, CString},
-    sync::Arc
+    sync::Arc,
 };
 use tokio::runtime::{Builder, Runtime};
 
 mod calc;
+
+use std::sync::Mutex;
 
 lazy_static! {
     pub static ref RUNTIME: Arc<Runtime> =
@@ -19,7 +21,7 @@ pub enum Command {
     Sub { x: f64, y: f64 },
     Mul { x: f64, y: f64 },
     Div { x: f64, y: f64 },
-    Abs { x: f64 }
+    Abs { x: f64 },
 }
 
 #[derive(Serialize)]
@@ -78,7 +80,7 @@ async fn execute_cmd(cmd: Command) -> CommandResult {
                 res: quot,
                 operation: "division".to_string(),
             }
-        },
+        }
 
         Command::Abs { x } => {
             let abs_res = calc::abs(x).await;
@@ -86,7 +88,6 @@ async fn execute_cmd(cmd: Command) -> CommandResult {
                 res: abs_res,
                 operation: "abs".to_string(),
             }
-
         }
     }
 }

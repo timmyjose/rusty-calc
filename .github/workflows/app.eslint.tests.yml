@@ -6,9 +6,7 @@ on:
       - '*'
     paths:
       - 'app/**'
-      - '.github/workflows/eslint-and-tests.yml'
-    env:
-      CI: true
+      - '.github/workflows/app.eslint.tests.yml'
 
 jobs:
   build:
@@ -37,15 +35,4 @@ jobs:
       - name: Test 
         run: yarn test
         working-directory: app/packages/calc
-  clippy:
-    name: App Rust Bridge Clippy Check
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
 
-      - uses: Swatinem/rust-cache@v2
-
-      - name: Run Clippy
-        working-directory: app/packages/react-native-rust-bridge/cpp/rustbridge
-        run: cargo clippy --all-targets --all-features -- -D warnings

@@ -1,0 +1,25 @@
+name: App (Rust Bridge) / Cargo Clippy 
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - '*'
+    paths:
+      - 'app/packages/react-native-rust-bridge/cpp/rustbridge'
+      - '.github/workflows/app.check.clippy.yml'
+
+jobs:
+  check:
+    name: App Rust Bridge cargo-check and cargo-clippy
+    runs-on: ubuntu-latest
+    env:
+      RUSTFLAGS: "-D warnings"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Run cargo-clippy
+        working-directory: app/packages/react-native-rust-bridge/cpp/rustbridge
+        run: cargo clippy --all-targets --all-features
