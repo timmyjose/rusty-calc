@@ -8,8 +8,6 @@ use tokio::runtime::{Builder, Runtime};
 
 mod calc;
 
-use std::sync::Mutex;
-
 lazy_static! {
     pub static ref RUNTIME: Arc<Runtime> =
         Arc::new(Builder::new_multi_thread().enable_all().build().unwrap());
