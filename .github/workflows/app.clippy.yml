@@ -6,7 +6,7 @@ on:
       - '*'
     paths:
       - 'app/packages/react-native-rust-bridge/cpp/rustbridge/**'
-      - '.github/workflows/app.check.clippy.yml'
+      - '.github/workflows/app.clippy.yml'
 
 jobs:
   check:
