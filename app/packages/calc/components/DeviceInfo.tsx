@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import { Button, useWindowDimensions, PixelRatio, Platform, StyleSheet, Text, View } from 'react-native'
+import * as Application from 'expo-application'
 
 export default function DeviceInfo() {
   const navigation = useNavigation()
@@ -19,6 +20,7 @@ export default function DeviceInfo() {
       { Platform.OS === 'android' && <Text>Model: {Platform.constants.Model} </Text>}
       { Platform.OS === 'android' && <Text>Release: {Platform.constants.Release} </Text>}
       { Platform.OS === 'android' && <Text>Version: {Platform.constants.Version} </Text>}
+      <Text>Native Build Version: {Application.nativeBuildVersion}</Text>
       <Button title='Go Back' onPress={() => navigation.goBack()} />
     </View>
   )
