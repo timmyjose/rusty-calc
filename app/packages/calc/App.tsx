@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Main from './Main'
 import AndroidKVBackupAgent from './components/AndroidKVBackupAgent'
 import VersionNumberInfo from './components/VersionNumberInfo'
-import DeviceInfo from './components/DeviceInfo'
+import DeviceInformation from './components/DeviceInformation'
 import { AppState } from 'react-native'
 import { useEffect, useRef } from 'react'
 
@@ -34,7 +34,7 @@ function App() {
         <Stack.Screen name='Main' component={Main} />
         <Stack.Screen name='Backup' component={AndroidKVBackupAgent} />
         <Stack.Screen name='VersionNumberInfo' component={VersionNumberInfo} />
-        <Stack.Screen name='DeviceInfo' component={DeviceInfo} />
+        <Stack.Screen name='DeviceInformation' component={DeviceInformation} />
       </Stack.Navigator>
     </NavigationContainer>
   )
