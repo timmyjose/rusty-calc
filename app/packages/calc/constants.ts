@@ -1,0 +1,1 @@
+export const TWILIO_BASE_URL = process.env.EXPO_PUBLIC_TWILIO_BASE_URL

@@ -7,8 +7,22 @@ import VersionNumberInfo from './components/VersionNumberInfo'
 import DeviceInformation from './components/DeviceInformation'
 import { AppState } from 'react-native'
 import { useEffect, useRef } from 'react'
+import OTPVerification from './components/OTPVerification'
+import Otp from './components/Otp'
+import Gated from './components/Gated'
 
-const Stack = createNativeStackNavigator()
+export type RootStackParamsList = {
+  Main: undefined
+  AndroidKVBackupAgent: undefined
+  Backup: undefined
+  VersionNumberInfo: undefined
+  DeviceInformation: undefined
+  OTPDemo: undefined
+  Otp: { phoneNumber: string }
+  Gated: undefined
+}
+
+const Stack = createNativeStackNavigator<RootStackParamsList>()
 
 function App() {
   const appState = useRef(AppState.currentState)
@@ -35,6 +49,9 @@ function App() {
         <Stack.Screen name='Backup' component={AndroidKVBackupAgent} />
         <Stack.Screen name='VersionNumberInfo' component={VersionNumberInfo} />
         <Stack.Screen name='DeviceInformation' component={DeviceInformation} />
+        <Stack.Screen name='OTPDemo' component={OTPVerification} />
+        <Stack.Screen name='Otp' component={Otp} />
+        <Stack.Screen name='Gated' component={Gated} />
       </Stack.Navigator>
     </NavigationContainer>
   )

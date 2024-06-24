@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { View, TextInput, Button, Text, StyleSheet } from 'react-native'
+import { View, TextInput, Button, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { execute } from 'react-native-rust-bridge'
 import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { RootStackParamsList } from './App'
 
 const Main = () => {
   const [x, setX] = useState(0)
@@ -67,13 +69,14 @@ const Main = () => {
     setResult(absRes.res)
   }
 
-  const navigation = useNavigation()
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamsList>>()
 
   return (
     <View style={styles.container}>
       <Button testID='app-button-backup' title='Backup' onPress={() => navigation.navigate('Backup')}/>
       <Button testID='app-button-version-number' title='VersionNumber' onPress={() => navigation.navigate('VersionNumberInfo')}/>
       <Button title='Device Info' onPress={() => navigation.navigate('DeviceInformation')} />
+      <Button title='OTP Demo' onPress={() => navigation.navigate('OTPDemo')} />
       <TextInput
         testID='app-textinput-x'
         style={styles.input}
@@ -92,11 +95,11 @@ const Main = () => {
       />
 
       <View style={styles.buttonContainer}>
-        <Button testID='app-button-add' title="Add" onPress={async() => await handleAdd()} />
-        <Button testID='app-button-sub' title="Subtract" onPress={async() => await handleSub()} />
-        <Button testID='app-button-mul' title="Multiply" onPress={async() => await handleMul()} />
-        <Button testID='app-button-div' title="Divide" onPress={async() => await handleDiv()} />
-        <Button testID='app-button-abs' title='Abs' onPress={(async() => await handleAbs())} />
+        <TouchableOpacity style={styles.button} testID='app-button-add' onPress={handleAdd}><Text style={styles.buttonText}>Add</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.button} testID='app-button-sub' onPress={handleSub}><Text style={styles.buttonText}>Sub</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.button} testID='app-button-mul' onPress={handleMul}><Text style={styles.buttonText}>Mul</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.button} testID='app-button-div' onPress={handleDiv}><Text style={styles.buttonText}>Div</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.button} testID='app-button-abs' onPress={handleAbs}><Text style={styles.buttonText}>Abs</Text></TouchableOpacity>
       </View>
 
       <Text testID='app-text-res' style={styles.resultText}>Result: {result}</Text>
@@ -114,6 +117,31 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 10
   },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '80%'
+  },
+  button: {
+    marginTop: 20,
+    height: 20,
+    width: '15%',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#7CDB8A",
+    shadowColor: "rgba(0,0,0,0.4)",
+    shadowOffset: {
+      width: 1,
+      height: 5
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 6.27,
+    elevation: 10
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 14
+  },
   input: {
     height: 40,
     width: '80%',
@@ -121,11 +149,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 10,
     paddingHorizontal: 10
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '80%'
   }
 })
 
