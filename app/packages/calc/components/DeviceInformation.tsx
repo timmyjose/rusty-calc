@@ -22,6 +22,7 @@ export default function DeviceInformation() {
       { Platform.OS === 'android' && <Text>Release: {Platform.constants.Release} </Text>}
       { Platform.OS === 'android' && <Text>Version: {Platform.constants.Version} </Text>}
       <Text>Native Build Version: {Application.nativeBuildVersion}</Text>
+      <Text> Base Os = {Platform.OS}</Text>
       <Text>(rndi) Version = {DeviceInfo.getVersion()}</Text>
       <Text>(rndi) buildNumber  = {DeviceInfo.getBuildNumber()}</Text>
       <Button title='Go Back' onPress={() => navigation.goBack()} />
