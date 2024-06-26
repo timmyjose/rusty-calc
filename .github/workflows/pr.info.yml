@@ -1,0 +1,25 @@
+name: Echo PR Info
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - '*'
+
+jobs:
+  show_version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show PR Info
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_rquest.body }}
+          PR_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          PR_VERSION="${PR_BRANCH#*-pr-}"
+
+          echo "PR Title: ${PR_TITLE}"
+          echo "PR Body: ${PR_BODY}"
+          echo "PR Branch: ${PR_BRANCH}"
+          echo "PR Version: ${PR_VERSION}" >> $GITHUB_ENV
