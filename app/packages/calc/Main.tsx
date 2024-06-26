@@ -71,6 +71,7 @@ const Main = () => {
 
   return (
     <View style={styles.container}>
+      <Text>Testing PR Body in Workflow</Text>
       <Button testID='app-button-backup' title='Backup' onPress={() => navigation.navigate('Backup')}/>
       <Button testID='app-button-version-number' title='VersionNumber' onPress={() => navigation.navigate('VersionNumberInfo')}/>
       <Button title='Device Info' onPress={() => navigation.navigate('DeviceInformation')} />
