@@ -14,9 +14,9 @@ jobs:
       - name: Show PR Info
         env:
           PR_TITLE: ${{ github.event.pull_request.title }}
-          PR_BODY: ${{ github.event.pull_request.body }}
           PR_BRANCH: ${{ github.event.pull_request.head.ref }}
         run: |
+          PR_BODY="${{ github.event.pull_request.body }}"
           PR_VERSION="${PR_BRANCH#*-pr-}"
 
           echo "PR Title: ${PR_TITLE}"
