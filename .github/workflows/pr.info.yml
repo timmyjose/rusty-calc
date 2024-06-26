@@ -15,6 +15,7 @@ jobs:
         env:
           PR_TITLE: ${{ github.event.pull_request.title }}
           PR_BRANCH: ${{ github.event.pull_request.head.ref }}
+
         run: |
           PR_BODY="${{ github.event.pull_request.body }}"
           PR_VERSION="${PR_BRANCH#*-pr-}"
@@ -22,4 +23,5 @@ jobs:
           echo "PR Title: ${PR_TITLE}"
           echo "PR Body: ${PR_BODY}"
           echo "PR Branch: ${PR_BRANCH}"
+
           echo "PR_VERSION=$PR_VERSION" >> $GITHUB_ENV
