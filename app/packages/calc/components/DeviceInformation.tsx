@@ -2,9 +2,11 @@ import { useNavigation } from '@react-navigation/native'
 import { Button, useWindowDimensions, PixelRatio, Platform, StyleSheet, Text, View } from 'react-native'
 import * as Application from 'expo-application'
 import { getBuildNumber, getVersion } from 'react-native-device-info'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { RootStackParamsList } from '../App'
 
 export default function DeviceInformation() {
-  const navigation = useNavigation()
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamsList>>()
 
   const { height, width, scale, fontScale } = useWindowDimensions()
 

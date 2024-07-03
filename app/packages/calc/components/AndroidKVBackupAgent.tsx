@@ -2,11 +2,13 @@ import { useNavigation } from '@react-navigation/native'
 import { Alert, Button, Platform, Text, TextInput, View } from 'react-native'
 import * as AndroidKVBackupAgent from 'android-kv-backup-agent'
 import { useState } from 'react'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { RootStackParamsList } from '../App'
 
 const PREFS_FILE = 'rustycalc_app_prefs'
 
 export default function ApiKey() {
-  const navigation = useNavigation()
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamsList>>()
 
   const [backupKey, setBackupKey] = useState<string>('')
   const [backupValue, setBackupValue] = useState<string>('')

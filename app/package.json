@@ -6,6 +6,9 @@
     "lint": "yarn workspaces -p run lint --max-warnings=0",
     "postinstall": "cd .. && husky app/.husky"
   },
+  "lint-staged": {
+    "**/*.{ts,tsx}": "yarn run lint"
+  },
   "workspaces": [
     "packages/*"
   ],
