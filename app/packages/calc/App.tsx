@@ -8,7 +8,14 @@ import DeviceInformation from './components/DeviceInformation'
 import { AppState } from 'react-native'
 import { useEffect, useRef } from 'react'
 
-const Stack = createNativeStackNavigator()
+export type RootStackParamsList = {
+  Main: undefined
+  Backup: undefined
+  VersionNumberInfo: undefined
+  DeviceInformation: undefined
+}
+
+const Stack = createNativeStackNavigator<RootStackParamsList>()
 
 function App() {
   const appState = useRef(AppState.currentState)

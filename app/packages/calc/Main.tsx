@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { View, TextInput, Button, Text, StyleSheet } from 'react-native'
 import { execute } from 'react-native-rust-bridge'
 import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { RootStackParamsList } from './App'
 
 const Main = () => {
   const [x, setX] = useState(0)
@@ -67,7 +69,7 @@ const Main = () => {
     setResult(absRes.res)
   }
 
-  const navigation = useNavigation()
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamsList>>()
 
   return (
     <View style={styles.container}>
