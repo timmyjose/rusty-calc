@@ -5,6 +5,7 @@ import Main from './Main'
 import AndroidKVBackupAgent from './components/AndroidKVBackupAgent'
 import VersionNumberInfo from './components/VersionNumberInfo'
 import DeviceInformation from './components/DeviceInformation'
+import SecureStoreDemo from './components/SecureStoreDemo'
 import { AppState } from 'react-native'
 import { useEffect, useRef } from 'react'
 
@@ -13,6 +14,7 @@ export type RootStackParamsList = {
   Backup: undefined
   VersionNumberInfo: undefined
   DeviceInformation: undefined
+  SecureStoreDemo: undefined
 }
 
 const Stack = createNativeStackNavigator<RootStackParamsList>()
@@ -42,6 +44,7 @@ function App() {
         <Stack.Screen name='Backup' component={AndroidKVBackupAgent} />
         <Stack.Screen name='VersionNumberInfo' component={VersionNumberInfo} />
         <Stack.Screen name='DeviceInformation' component={DeviceInformation} />
+        <Stack.Screen name='SecureStoreDemo' component={SecureStoreDemo} />
       </Stack.Navigator>
     </NavigationContainer>
   )
