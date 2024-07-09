@@ -2,13 +2,13 @@
 import React, { useState } from 'react'
 import { View, TextInput, Button, Text, StyleSheet, StatusBar, Platform } from 'react-native'
 import { execute } from 'react-native-rust-bridge'
-import * as Sentry from 'sentry-expo'
+import * as Sentry from '@sentry/react-native'
 
 Sentry.init({
   dsn: 'https://f9a2977dfd43c60a55609e0efacbb162@o235927.ingest.sentry.io/4506624563609600',
   environment: 'Dev',
   debug: false,
-  enableInExpoDevelopment: true
+  enabled: true
 })
 
 const App = () => {
@@ -26,10 +26,10 @@ const App = () => {
 
    try {
      const sum = JSON.parse(await execute(add_cmd))
-     Sentry.Native.captureMessage(`Adding ${x} and ${y}`)
+     Sentry.captureMessage(`Adding ${x} and ${y}`)
      setResult(sum.res)
    } catch (err) {
-     Sentry.Native.captureException(err)
+     Sentry.captureException(err)
    }
  }
 
@@ -43,10 +43,10 @@ const App = () => {
 
    try {
      const diff = JSON.parse(await execute(sub_cmd))
-     Sentry.Native.captureMessage(`Subtracting ${x} and ${y}`)
+     Sentry.captureMessage(`Subtracting ${x} and ${y}`)
      setResult(diff.res)
    } catch (err) {
-     Sentry.Native.captureException(err)
+     Sentry.captureException(err)
    }
  }
 
@@ -60,10 +60,10 @@ const App = () => {
 
    try {
      const prod = JSON.parse(await execute(mul_cmd))
-     Sentry.Native.captureMessage(`Multiplying ${x} and ${y}`)
+     Sentry.captureMessage(`Multiplying ${x} and ${y}`)
      setResult(prod.res)
    } catch (err) {
-     Sentry.Native.captureException(err)
+     Sentry.captureException(err)
    }
  }
 
@@ -77,10 +77,10 @@ const App = () => {
 
    try {
      const quot = JSON.parse(await execute(div_cmd))
-     Sentry.Native.captureMessage(`Dividing ${x} and ${y}`)
+     Sentry.captureMessage(`Dividing ${x} and ${y}`)
      setResult(quot.res)
    } catch (err) {
-     Sentry.Native.captureException(err)
+     Sentry.captureException(err)
    }
  }
 
@@ -109,9 +109,9 @@ const App = () => {
        <Button testID='app-button-sub' title="Subtract" onPress={async() => await handleSub()} />
        <Button testID='app-button-mul' title="Multiply" onPress={async() => await handleMul()} />
        <Button testID='app-button-div' title="Divide" onPress={async() => await handleDiv()} /> */}
-       <Button title='(raw message)' onPress={() => { Sentry.Native.captureMessage('A raw message') }} />
-       <Button title='(raw error)' onPress={() => { Sentry.Native.captureException(new Error('Some error again and again!')) }} />
-       <Button title='(crash)' onPress={() => { Sentry.Native.nativeCrash() }} />
+       <Button title='(raw message)' onPress={() => { Sentry.captureMessage('A raw message') }} />
+       <Button title='(raw error)' onPress={() => { Sentry.captureException(new Error('Some error again and again!')) }} />
+       <Button title='(crash)' onPress={() => { Sentry.nativeCrash() }} />
      </View>
 
      <Text testID='app-text-res' style={styles.resultText}>Result: {result}</Text>
@@ -144,4 +144,4 @@ const styles = StyleSheet.create({
  },
 })
 
-export default App
+export default Sentry.wrap(App)
