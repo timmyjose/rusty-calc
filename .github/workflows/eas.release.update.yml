@@ -1,0 +1,62 @@
+name: EAS / Release / Expo Update
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version number (for app.json). Eg: 1.1.7'
+        required: false
+        type: string
+
+jobs:
+  build:
+    name: Checkout and EAS Update
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: yarn
+          cache-dependency-path: '**/yarn.lock'
+
+      - name: Print branch name
+        run: echo ${GITHUB_REF_NAME}
+
+      - name: Install dependencies
+        working-directory: app/packages/calc
+        run: yarn install
+
+      - name: Setup Expo and EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Update app.json if needed
+        if: github.event.inputs.version
+        working-directory: app/packages/calc
+        run: |
+          CURRENT_APP_JSON_VERSION=$(jq -r '.expo.version' app.json)
+          VERSION=${{ github.event.inputs.version }}
+
+          if [[ "${CURRENT_APP_JSON_VERSION}" != "${VERSION}" ]]; then
+            echo "Detected a different app.json version..."
+            jq --arg version "$VERSION" '.expo.version = $version' app.json > app.temp.json
+            mv app.temp.json app.json
+          else
+            echo "app.json version is unchanged"
+          fi
+
+      - name: Print version in app.json
+        working-directory: app/packages/calc
+        run: |
+          CURRENT_APP_JSON_VERSION=$(jq -r '.expo.version' app.json) 
+          echo "Version in app.json = ${CURRENT_APP_JSON_VERSION}"
+
+      - name: Perform eas update (workflow dispatch)
+        working-directory: app/packages/calc
+        run: eas update --channel=production --message="$(git log -1 --pretty=%B)"
+
+      - name: Upload source maps for update to Sentry
+        working-directory: app/packages/calc
+        run: SENTRY_URL=https://sentry.io npx sentry-expo-upload-sourcemaps dist
