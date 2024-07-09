@@ -59,4 +59,9 @@ jobs:
 
       - name: Upload source maps for update to Sentry
         working-directory: app/packages/calc
-        run: SENTRY_URL=https://sentry.io npx sentry-expo-upload-sourcemaps dist
+        env:
+          SENTRY_URL: https://sentry.io
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+        run: npx sentry-expo-upload-sourcemaps dist

@@ -109,9 +109,7 @@ const App = () => {
        <Button testID='app-button-sub' title="Subtract" onPress={async() => await handleSub()} />
        <Button testID='app-button-mul' title="Multiply" onPress={async() => await handleMul()} />
        <Button testID='app-button-div' title="Divide" onPress={async() => await handleDiv()} /> */}
-       <Button title='(raw message)' onPress={() => { Sentry.captureMessage('A raw message') }} />
-       <Button title='(raw error)' onPress={() => { Sentry.captureException(new Error('Some error again and again!')) }} />
-       <Button title='(eas updates error)' onPress={() => { Sentry.captureException(new Error('testing eas updates and source maps via workflow'))}} />
+       <Button title='Testing Sentry SourceMaps Workflow' onPress={() => { Sentry.captureException(new Error('123 - Testing eas updates and source maps via workflow'))}} />
      </View>
 
      <Text testID='app-text-res' style={styles.resultText}>Result: {result}</Text>
