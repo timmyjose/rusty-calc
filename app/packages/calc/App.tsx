@@ -111,6 +111,7 @@ const App = () => {
        <Button testID='app-button-div' title="Divide" onPress={async() => await handleDiv()} /> */}
        <Button title='(raw message)' onPress={() => { Sentry.captureMessage('A raw message') }} />
        <Button title='(raw error)' onPress={() => { Sentry.captureException(new Error('Some error again and again!')) }} />
+       <Button title='(update error)' onPress={() => { Sentry.captureException(new Error('testing eas updates and source maps'))}} />
        <Button title='(crash)' onPress={() => { Sentry.nativeCrash() }} />
      </View>
 

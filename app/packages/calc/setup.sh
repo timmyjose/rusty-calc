@@ -8,7 +8,7 @@ IOS_PREBUILD_DIR="ios"
 if [[ "$@" == *"--clean"* ]]
 then
     (
-        echo "Doing a fulle clean..."
+        echo "Doing a full clean..."
         set +e
         set -x
         echo "Deleting ../../app/node_modules"
