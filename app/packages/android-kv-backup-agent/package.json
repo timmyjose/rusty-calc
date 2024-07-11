@@ -1,6 +1,6 @@
 {
   "name": "android-kv-backup-agent",
-  "version": "10.0.0",
+  "version": "11.0.0",
   "description": "Key-Value backup for Android",
   "main": "build/index.js",
   "types": "build/index.d.ts",
