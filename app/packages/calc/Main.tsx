@@ -27,7 +27,7 @@ const Main = () => {
         throw Error('So long and thanks for the fish - add')
       }
     } catch (err: any) {
-      Sentry.React.captureException(err)
+      Sentry.Native.captureException(err)
     }
   }
 
@@ -47,7 +47,7 @@ const Main = () => {
         throw Error('So long and thanks for the fish - sub')
       }
     } catch (err: any) {
-      Sentry.React.captureException(err)
+      Sentry.Native.captureException(err)
     }
   }
 
@@ -67,7 +67,7 @@ const Main = () => {
         throw Error('So long and thanks for all the fish - mul')
       }
     } catch (err: any) {
-      Sentry.React.captureException(err)
+      Sentry.Native.captureException(err)
     }
   }
 
@@ -87,7 +87,7 @@ const Main = () => {
         throw Error('Attempt to divide by 0')
       }
     } catch (err: any) {
-      Sentry.React.captureException(err)
+      Sentry.Native.captureException(err)
     }
   }
 
@@ -106,7 +106,7 @@ const Main = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Testing sourcemap uploads for eas updates - using Sentry.React.captureException</Text>
+      <Text>Testing sourcemap uploads for eas updates - using Sentry.Native.captureException</Text>
       <Button testID='app-button-backup' title='Backup' onPress={() => navigation.navigate('Backup')}/>
       <Button testID='app-button-version-number' title='VersionNumber' onPress={() => navigation.navigate('VersionNumberInfo')}/>
       <Button title='Device Info' onPress={() => navigation.navigate('DeviceInformation')} />
