@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { View, TextInput, Button, Text, StyleSheet } from 'react-native'
 import { execute } from 'react-native-rust-bridge'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { RootStackParamsList } from './App'
+import * as Sentry from 'sentry-expo'
 
 const Main = () => {
   const [x, setX] = useState(0)
@@ -54,8 +55,16 @@ const Main = () => {
       }
     })
 
-    const quot = JSON.parse(await execute(divCmd))
-    setResult(quot.res)
+    try {
+      const quot = JSON.parse(await execute(divCmd))
+      setResult(quot.res)
+
+      if (y === 0) {
+        throw new Error('Cannot divide by 0')
+      }
+    } catch (err) {
+      Sentry.Native.captureException(err)
+    }
   }
 
   const handleAbs = async () => {
@@ -77,6 +86,7 @@ const Main = () => {
       <Button testID='app-button-version-number' title='VersionNumber' onPress={() => navigation.navigate('VersionNumberInfo')}/>
       <Button title='Device Info' onPress={() => navigation.navigate('DeviceInformation')} />
       <Button title='Secure Store Demo' onPress={() => navigation.navigate('SecureStoreDemo')} />
+      <Button title='Sentry Demo' onPress={() => navigation.navigate('SentryDemo')} />
       <TextInput
         testID='app-textinput-x'
         style={styles.input}
