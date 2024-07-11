@@ -69,7 +69,8 @@
         }
       ],
       "react-native-cloud-storage",
-      "./plugins/withAndroid64BitOnly"
+      "./plugins/withAndroid64BitOnly",
+      "sentry-expo"
     ],
     "hooks": {
       "postPublish": [
@@ -77,7 +78,8 @@
           "file":"sentry-expo/upload-sourcemaps",
           "config": {
             "organization": "SENTRY_ORG",
-            "project": "SENTRY_PROJECT"
+            "project": "SENTRY_PROJECT",
+            "authToken": "SENTRY_AUTH_TOKEN"
           }
         }
       ]
