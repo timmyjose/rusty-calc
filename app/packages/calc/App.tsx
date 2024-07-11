@@ -14,7 +14,7 @@ import SentryDemo from './components/SentryDemo'
 
 Sentry.init({
   dsn: SENTRY_DSN,
-  enableInExpoDevelopment: true,
+  enableInExpoDevelopment: false,
   integrations: [
     new Sentry.Native.ReactNativeTracing({
       enableAppStartTracking: false

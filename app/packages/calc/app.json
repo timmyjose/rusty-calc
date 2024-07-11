@@ -78,8 +78,7 @@
           "file":"sentry-expo/upload-sourcemaps",
           "config": {
             "organization": "SENTRY_ORG",
-            "project": "SENTRY_PROJECT",
-            "authToken": "SENTRY_AUTH_TOKEN"
+            "project": "SENTRY_PROJECT"
           }
         }
       ]
