@@ -19,8 +19,16 @@ const Main = () => {
       }
     })
 
-    const sum = JSON.parse(await execute(addCmd))
-    setResult(sum.res)
+    try {
+      const sum = JSON.parse(await execute(addCmd))
+      setResult(sum.res)
+
+      if (y === 42) {
+        throw Error('So long and thanks for the fish - add')
+      }
+    } catch (err: any) {
+      Sentry.React.captureException(err)
+    }
   }
 
   const handleSub = async () => {
@@ -31,8 +39,16 @@ const Main = () => {
       }
     })
 
-    const diff = JSON.parse(await execute(subCmd))
-    setResult(diff.res)
+    try {
+      const diff = JSON.parse(await execute(subCmd))
+      setResult(diff.res)
+
+      if (y === 42) {
+        throw Error('So long and thanks for the fish - sub')
+      }
+    } catch (err: any) {
+      Sentry.Browser.captureException(err)
+    }
   }
 
   const handleMul = async () => {
@@ -43,8 +59,16 @@ const Main = () => {
       }
     })
 
-    const prod = JSON.parse(await execute(mulCmd))
-    setResult(prod.res)
+    try {
+      const prod = JSON.parse(await execute(mulCmd))
+      setResult(prod.res)
+
+      if (y === 42) {
+        throw Error('So long and thanks for all the fish - mul')
+      }
+    } catch (err: any) {
+      Sentry.Native.captureException(err)
+    }
   }
 
   const handleDiv = async () => {
@@ -82,6 +106,7 @@ const Main = () => {
 
   return (
     <View style={styles.container}>
+      <Text>Testing sourcemap uploads for eas updates</Text>
       <Button testID='app-button-backup' title='Backup' onPress={() => navigation.navigate('Backup')}/>
       <Button testID='app-button-version-number' title='VersionNumber' onPress={() => navigation.navigate('VersionNumberInfo')}/>
       <Button title='Device Info' onPress={() => navigation.navigate('DeviceInformation')} />
