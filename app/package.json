@@ -1,7 +1,7 @@
 {
   "private": "true",
   "name": "rusty-calc",
-  "version": "1.0.0",
+  "version": "1.2.3",
   "scripts": {
     "lint": "yarn workspaces -p run lint --max-warnings=0",
     "postinstall": "cd .. && husky app/.husky"

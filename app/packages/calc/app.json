@@ -2,7 +2,7 @@
   "expo": {
     "name": "RustyCalc",
     "slug": "calc",
-    "version": "8.0.0",
+    "version": "10.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -71,6 +71,17 @@
       "react-native-cloud-storage",
       "./plugins/withAndroid64BitOnly"
     ],
+    "hooks": {
+      "postPublish": [
+        {
+          "file":"sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "SENTRY_ORG",
+            "project": "SENTRY_PROJECT"
+          }
+        }
+      ]
+    },
     "extra": {
       "eas": {
         "projectId": "1febffaf-30d7-4b60-bd03-c936a56e80b4"

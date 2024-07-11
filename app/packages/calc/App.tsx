@@ -8,6 +8,19 @@ import DeviceInformation from './components/DeviceInformation'
 import SecureStoreDemo from './components/SecureStoreDemo'
 import { AppState } from 'react-native'
 import { useEffect, useRef } from 'react'
+import * as Sentry from 'sentry-expo'
+import { SENTRY_DSN } from './config/constants'
+import SentryDemo from './components/SentryDemo'
+
+Sentry.init({
+  dsn: SENTRY_DSN,
+  enableInExpoDevelopment: true,
+  integrations: [
+    new Sentry.Native.ReactNativeTracing({
+      enableAppStartTracking: false
+    })
+  ]
+})
 
 export type RootStackParamsList = {
   Main: undefined
@@ -15,6 +28,7 @@ export type RootStackParamsList = {
   VersionNumberInfo: undefined
   DeviceInformation: undefined
   SecureStoreDemo: undefined
+  SentryDemo: undefined
 }
 
 const Stack = createNativeStackNavigator<RootStackParamsList>()
@@ -45,6 +59,7 @@ function App() {
         <Stack.Screen name='VersionNumberInfo' component={VersionNumberInfo} />
         <Stack.Screen name='DeviceInformation' component={DeviceInformation} />
         <Stack.Screen name='SecureStoreDemo' component={SecureStoreDemo} />
+        <Stack.Screen name='SentryDemo' component={SentryDemo} />
       </Stack.Navigator>
     </NavigationContainer>
   )
