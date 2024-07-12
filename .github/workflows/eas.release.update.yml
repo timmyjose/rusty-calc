@@ -60,3 +60,14 @@ jobs:
       - name: Perform eas update (workflow dispatch)
         working-directory: app/packages/calc
         run: eas update --channel=production --message="$(git log -1 --pretty=%B)"
+
+      - name: Upload sourcemaps to Sentry
+        working-directory: app/packages/calc
+        env:
+          SENTRY_URL: https://sentry.io
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+          SENTRY_AUTh_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+        run: |
+          python3 scripts/update_sourcemaps.py
+

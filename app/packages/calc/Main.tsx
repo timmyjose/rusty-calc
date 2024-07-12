@@ -106,7 +106,7 @@ const Main = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Testing sourcemap uploads for eas updates - using Sentry.Native.captureException</Text>
+      <Text>Sourcemap upload via Workflow test</Text>
       <Button testID='app-button-backup' title='Backup' onPress={() => navigation.navigate('Backup')}/>
       <Button testID='app-button-version-number' title='VersionNumber' onPress={() => navigation.navigate('VersionNumberInfo')}/>
       <Button title='Device Info' onPress={() => navigation.navigate('DeviceInformation')} />

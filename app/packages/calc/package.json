@@ -4,7 +4,7 @@
   "version": "10.0.0",
   "main": "index.js",
   "scripts": {
-    "setup": "bash setup.sh",
+    "setup": "bash scripts/setup.sh",
     "eas-build-pre-install": "bash ./eas-hooks/eas-build-pre-install.sh && bash setup.sh",
     "eas-build-on-success": "bash ./eas-hooks/eas-build-on-success.sh",
     "start": "expo start",
