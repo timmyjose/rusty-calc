@@ -106,7 +106,7 @@ const Main = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Sourcemap upload via Workflow test - fixed workflow</Text>
+      <Text>Sourcemap upload via Workflow test - fixed workflow 1</Text>
       <Button testID='app-button-backup' title='Backup' onPress={() => navigation.navigate('Backup')}/>
       <Button testID='app-button-version-number' title='VersionNumber' onPress={() => navigation.navigate('VersionNumberInfo')}/>
       <Button title='Device Info' onPress={() => navigation.navigate('DeviceInformation')} />

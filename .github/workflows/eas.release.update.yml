@@ -6,6 +6,14 @@ on:
         description: 'Version number (for app.json). Eg: 1.1.7'
         required: false
         type: string
+      android_build_version:
+        description: 'Android VersionCode. Eg: 34'
+        required: true
+        type: string
+      ios_build_version:
+        description: 'iOS Build Number. Eg: 82'
+        required: true
+        type: string
 
 jobs:
   build:
@@ -61,11 +69,6 @@ jobs:
         working-directory: app/packages/calc
         run: eas update --channel=production --message="$(git log -1 --pretty=%B)"
 
-      - name: Display the contents of the `dist` directory
-        working-directory: app/packages/calc
-        run: |
-          ls -R dist
-
       - name: Upload sourcemaps to Sentry
         working-directory: app/packages/calc
         env:
@@ -73,6 +76,8 @@ jobs:
           SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          ANDROID_BUILD_VERSION: ${{ github.event.inputs.android_build_version }}
+          IOS_BUILD_VERSION: ${{ github.event.inputs.ios_build_version }}
         run: |
-          python3 scripts/update_sourcemaps.py
+          python3 scripts/update_sourcemaps.py "$ANDROID_BUILD_VERSION" "$IOS_BUILD_VERSION"
 

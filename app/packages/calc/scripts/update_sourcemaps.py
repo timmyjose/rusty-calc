@@ -6,6 +6,7 @@
 import subprocess
 import json
 import os
+import sys
 
 BUNDLES_DIR = "dist/bundles"
 UPDATE_BRANCH = "mobile-release-expo-update"
@@ -87,19 +88,7 @@ def process_bundle_files():
 
     return android_map_file, ios_map_file
 
-def get_app_version_and_build_version(os):
-    """
-    Get the app version and app build version for the update
-    """
-    app_versions_cmd = ["eas", "build:list", "-p", os, "--json", "--limit=1", "--non-interactive"]
-    app_versions_json = exec_cmd(app_versions_cmd)
-
-    if app_versions_json and isinstance(app_versions_json, list) and len(app_versions_json) > 0:
-        app_version = app_versions_json[0].get("appVersion")
-        app_build_version = app_versions_json[0].get("appBuildVersion")
-        return app_version, app_build_version
-
-def get_update_ids(app_version):
+def get_update_ids():
     """
     Get the update ids for this update group
     """
@@ -142,30 +131,24 @@ def get_update_ids(app_version):
     else:
         raise SourceMapUpdateError("Failed to get valid update details")
 
-    # This will not always be true, yes? Do we need to check this then?
-    # assert android_runtime_version == ios_runtime_version
+    # For the same update group, the runtimeVersion must be the same for
+    # all (both) updates in the same update group
+    assert android_runtime_version == ios_runtime_version
 
-    # This should be true for eas updates conducted via CI (?)
-    # assert app_version == android_runtime_version
+    return android_latest_update_id, ios_latest_update_id, android_runtime_version
 
-    return android_latest_update_id, ios_latest_update_id
-
-def update_sourcemaps(android_bundle_map, ios_bundle_map):
+def update_sourcemaps(android_bundle_map, android_build_version, ios_bundle_map, ios_build_version):
     """
     Execute the commands to upload sourcemaps for the updates to Sentry
     """
-    android_app_version, android_app_build_version = get_app_version_and_build_version(
-        "android"
-    )
-    ios_app_version, ios_app_build_version = get_app_version_and_build_version("ios")
-    android_latest_update_id, ios_latest_update_id = get_update_ids(android_app_version)
+    android_latest_update_id, ios_latest_update_id, runtime_version = get_update_ids()
 
     try:
         print("Performing Android sourcemap update")
         android_update_cmd = SOURCEMAP_UPDATE_CMD.format(
             bundle_identifier=BUNDLE_IDENTIFIER,
-            app_version=android_app_version,
-            app_build_version=android_app_build_version,
+            app_version=runtime_version,
+            app_build_version=android_build_version,
             update_id=android_latest_update_id,
             bundle_name=ANDROID_BUNDLE_NAME,
             bundle_map=android_bundle_map,
@@ -176,8 +159,8 @@ def update_sourcemaps(android_bundle_map, ios_bundle_map):
         print("Performing iOS sourcemap update")
         ios_update_cmd = SOURCEMAP_UPDATE_CMD.format(
             bundle_identifier=BUNDLE_IDENTIFIER,
-            app_version=ios_app_version,
-            app_build_version=ios_app_build_version,
+            app_version=runtime_version,
+            app_build_version=ios_build_version,
             update_id=ios_latest_update_id,
             bundle_name=IOS_BUNDLE_NAME,
             bundle_map=ios_bundle_map,
@@ -188,9 +171,17 @@ def update_sourcemaps(android_bundle_map, ios_bundle_map):
         print(f"Sourcemap update command execution failed: {e.stderr}")
         raise SourceMapUpdateError(f"Failed to upload source maps: {e.stderr}")
 
-def main():
+    print("Finished uploading sourcemaps")
+
+def main(android_build_version, ios_build_version):
+    print(f"Android Build Version: {android_build_version}, iOS Build Version: {ios_build_version}")
     android_bundle_map, ios_bundle_map = process_bundle_files()
-    update_sourcemaps(android_bundle_map, ios_bundle_map)
+    update_sourcemaps(android_bundle_map, android_build_version, ios_bundle_map, ios_build_version)
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) != 3:
+        print("Usage: update_sourcemap android_build_version ios_build_version")
+        sys.exit(1)
+    
+    android_build_version, ios_build_version = int(sys.argv[1]), int(sys.argv[2])
+    main(android_build_version, ios_build_version)
