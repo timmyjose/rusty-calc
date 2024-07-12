@@ -61,6 +61,11 @@ jobs:
         working-directory: app/packages/calc
         run: eas update --channel=production --message="$(git log -1 --pretty=%B)"
 
+      - name: Display the contents of the `dist` directory
+        working-directory: app/packages/calc
+        run: |
+          ls -R dist
+
       - name: Upload sourcemaps to Sentry
         working-directory: app/packages/calc
         env:

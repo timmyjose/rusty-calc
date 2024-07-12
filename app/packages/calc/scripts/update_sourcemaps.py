@@ -160,29 +160,33 @@ def update_sourcemaps(android_bundle_map, ios_bundle_map):
     ios_app_version, ios_app_build_version = get_app_version_and_build_version("ios")
     android_latest_update_id, ios_latest_update_id = get_update_ids(android_app_version)
 
-    print("Performing Android sourcemap update")
-    android_update_cmd = SOURCEMAP_UPDATE_CMD.format(
-        bundle_identifier=BUNDLE_IDENTIFIER,
-        app_version=android_app_version,
-        app_build_version=android_app_build_version,
-        update_id=android_latest_update_id,
-        bundle_name=ANDROID_BUNDLE_NAME,
-        bundle_map=android_bundle_map,
-    )
-    print(f"About to execute: {android_update_cmd}")
-    subprocess.run(android_update_cmd, shell=True, check=True, capture_output=True, text=True)
+    try:
+        print("Performing Android sourcemap update")
+        android_update_cmd = SOURCEMAP_UPDATE_CMD.format(
+            bundle_identifier=BUNDLE_IDENTIFIER,
+            app_version=android_app_version,
+            app_build_version=android_app_build_version,
+            update_id=android_latest_update_id,
+            bundle_name=ANDROID_BUNDLE_NAME,
+            bundle_map=android_bundle_map,
+        )
+        print(f"About to execute: {android_update_cmd}")
+        subprocess.run(android_update_cmd, shell=True, check=True, capture_output=True, text=True)
 
-    print("Performing iOS sourcemap update")
-    ios_update_cmd = SOURCEMAP_UPDATE_CMD.format(
-        bundle_identifier=BUNDLE_IDENTIFIER,
-        app_version=ios_app_version,
-        app_build_version=ios_app_build_version,
-        update_id=ios_latest_update_id,
-        bundle_name=IOS_BUNDLE_NAME,
-        bundle_map=ios_bundle_map,
-    )
-    print(f"About to execute: {ios_update_cmd}")
-    subprocess.run(ios_update_cmd, shell=True, check=True, capture_output=True, text=True)
+        print("Performing iOS sourcemap update")
+        ios_update_cmd = SOURCEMAP_UPDATE_CMD.format(
+            bundle_identifier=BUNDLE_IDENTIFIER,
+            app_version=ios_app_version,
+            app_build_version=ios_app_build_version,
+            update_id=ios_latest_update_id,
+            bundle_name=IOS_BUNDLE_NAME,
+            bundle_map=ios_bundle_map,
+        )
+        print(f"About to execute: {ios_update_cmd}")
+        subprocess.run(ios_update_cmd, shell=True, check=True, capture_output=True, text=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Sourcemap update command execution failed: {e.stderr}")
+        raise SourceMapUpdateError(f"Failed to upload source maps: {e.stderr}")
 
 def main():
     android_bundle_map, ios_bundle_map = process_bundle_files()
