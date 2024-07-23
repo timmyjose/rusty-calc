@@ -44,6 +44,19 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
+      - name: Allow only PATCH variations in version (not MAJOR or MINOR)
+        if: github.event.inputs.version
+        working-directory: app/packages/calc
+        run: |
+          BRANCH_VERSION=$(echo ${GITHUB_REF_NAME} | sed -n 's/.*\/\(.*\)$/\1/p')
+          MAJOR_MINOR=$(echo ${BRANCH_VERSION} | grep -oP '^\d+\.\d+')
+          VERSION=${{ github.event.inputs.version }}
+          
+          if [[ ! "$VERSION" =~ ^${MAJOR_MINOR}\.[0-9]+$ ]]; then
+            echo "Invalid version: $VERSION. Only ${MAJOR_MINOR}.X versions are allowed."
+            exit 1
+          fi
+
       - name: Update app.json if needed
         if: github.event.inputs.version
         working-directory: app/packages/calc
