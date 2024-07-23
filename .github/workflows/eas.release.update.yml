@@ -30,16 +30,16 @@ jobs:
       - name: Print branch name
         run: echo ${GITHUB_REF_NAME}
 
-      - name: Allow only PATCH variations in version (not MAJOR or MINOR)
+      - name: Allow difference in only PATCH version in the supplied version string
         if: github.event.inputs.version
         working-directory: app/packages/calc
         run: |
-          BRANCH_VERSION=$(echo ${GITHUB_REF_NAME} | sed -n 's/.*\/\(.*\)$/\1/p')
-          MAJOR_MINOR=$(echo ${BRANCH_VERSION} | grep -oP '^\d+\.\d+')
+          CURRENT_APP_JSON_VERSION=$(jq -r '.expo.version' app.json)
+          MAJOR_MINOR=${CURRENT_APP_JSON_VERSION%.*}
           VERSION=${{ github.event.inputs.version }}
           
-          if [[ ! "$VERSION" =~ ^${MAJOR_MINOR}\.[0-9]+$ ]]; then
-            echo "Invalid version: $VERSION. Only ${MAJOR_MINOR}.X versions are allowed."
+          if [[ ! "$VERSION" =~ ^"${MAJOR_MINOR}" ]]; then
+            echo "Invalid supplied app version: $VERSION. Only ${MAJOR_MINOR}.X versions are allowed."
             exit 1
           fi
 
