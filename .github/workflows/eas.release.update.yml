@@ -30,6 +30,15 @@ jobs:
       - name: Print branch name
         run: echo ${GITHUB_REF_NAME}
 
+      - name: Print version strings
+        working-directory: app/packages/calc
+        run: |
+          CURRENT_APP_JSON_VERSION=$(jq -r '.expo.version' app.json) 
+          USER_SUPPLIED_APP_JSON_VERSION=${{ github.event.inputs.version }}
+          echo "Current App version: ${CURRENT_APP_JSON_VERSION}; You entered:  ${USER_SUPPLIED_APP_JSON_VERSION}"
+          echo "Version in app.json = ${CURRENT_APP_JSON_VERSION}"
+
+
       - name: Allow difference in only PATCH version in the supplied version string
         if: github.event.inputs.version
         working-directory: app/packages/calc
