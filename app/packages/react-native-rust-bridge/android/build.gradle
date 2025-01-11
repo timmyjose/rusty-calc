@@ -37,6 +37,8 @@ def supportsNamespace() {
 }
 
 android {
+  logger.lifecycle("supports namespaces: ${supportsNamespace()}")
+
   if (supportsNamespace()) {
     namespace "com.rustbridge"
 
@@ -116,6 +118,7 @@ dependencies {
   implementation "com.facebook.react:react-native:+"
 }
 
+logger.lifecycle("isNewArchEnabled? ${isNewArchitectureEnabled()}")
 if (isNewArchitectureEnabled()) {
   react {
     jsRootDir = file("../src/")

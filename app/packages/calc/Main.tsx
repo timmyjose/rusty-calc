@@ -4,7 +4,6 @@ import { execute } from 'react-native-rust-bridge'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { RootStackParamsList } from './App'
-import * as Sentry from 'sentry-expo'
 
 const Main = () => {
   const [x, setX] = useState(0)
@@ -27,7 +26,7 @@ const Main = () => {
         throw Error('So long and thanks for the fish - add')
       }
     } catch (err: any) {
-      Sentry.Native.captureException(err)
+      console.error(err)
     }
   }
 
@@ -47,7 +46,7 @@ const Main = () => {
         throw Error('So long and thanks for the fish - sub')
       }
     } catch (err: any) {
-      Sentry.Native.captureException(err)
+      console.error(err)
     }
   }
 
@@ -67,7 +66,7 @@ const Main = () => {
         throw Error('So long and thanks for all the fish - mul')
       }
     } catch (err: any) {
-      Sentry.Native.captureException(err)
+      console.error(err)
     }
   }
 
@@ -87,7 +86,7 @@ const Main = () => {
         throw Error('Attempt to divide by 0')
       }
     } catch (err: any) {
-      Sentry.Native.captureException(err)
+      console.error(err)
     }
   }
 
@@ -111,7 +110,6 @@ const Main = () => {
       <Button testID='app-button-version-number' title='VersionNumber' onPress={() => navigation.navigate('VersionNumberInfo')}/>
       <Button title='Device Info' onPress={() => navigation.navigate('DeviceInformation')} />
       <Button title='Secure Store Demo' onPress={() => navigation.navigate('SecureStoreDemo')} />
-      <Button title='Sentry Demo' onPress={() => navigation.navigate('SentryDemo')} />
       <TextInput
         testID='app-textinput-x'
         style={styles.input}

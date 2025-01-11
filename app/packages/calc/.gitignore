@@ -1,6 +1,7 @@
 # dependencies
 node_modules/
 artifacts
+**/*.ipa
 
 # Expo
 .expo/

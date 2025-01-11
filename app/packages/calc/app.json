@@ -49,8 +49,16 @@
       [
         "expo-build-properties",
         {
+          "android": {
+            "minSdkVersion": 26,
+            "compileSdkVersion": 35,
+            "targetSdkVersion": 35,
+            "buildToolsVersion": "35.0.0",
+            "enableProguardInReleaseBuilds": true,
+            "enableShrinkResourcesInReleaseBuilds": true
+          },
           "ios": {
-            "deploymentTarget": "13.4"
+            "deploymentTarget": "15.1"
           }
         }
       ],
@@ -69,32 +77,13 @@
         }
       ],
       "react-native-cloud-storage",
-      "./plugins/withAndroid64BitOnly",
-      "sentry-expo"
+      "./plugins/withAndroid64BitOnly"
     ],
-    "hooks": {
-      "postPublish": [
-        {
-          "file":"sentry-expo/upload-sourcemaps",
-          "config": {
-            "organization": "SENTRY_ORG",
-            "project": "SENTRY_PROJECT"
-          }
-        }
-      ]
-    },
     "extra": {
       "eas": {
         "projectId": "1febffaf-30d7-4b60-bd03-c936a56e80b4"
       }
     },
-    "owner": "timmyjose",
-    "updates": {
-      "enabled": true,
-      "requestHeaders": {
-        "expo-channel-name": "production"
-      },
-      "url": "https://u.expo.dev/1febffaf-30d7-4b60-bd03-c936a56e80b4"
-    }
+    "owner": "timmyjose"
   }
 }
