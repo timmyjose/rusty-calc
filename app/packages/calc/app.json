@@ -3,6 +3,7 @@
     "name": "RustyCalc",
     "slug": "calc",
     "version": "11.0.0",
+    "newArchEnabled": true,
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",

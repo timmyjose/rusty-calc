@@ -52,3 +52,4 @@ fi
 yarn workspace react-native-rust-bridge clean
 yarn workspace react-native-rust-bridge setup
 yarn workspace react-native-rust-bridge build "$@" # pass any flags such as `--clean` to the build script
+yarn workspace react-native-rust-bridge prepare
